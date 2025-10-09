@@ -1,0 +1,236 @@
+<div class="d-flex justify-content-between align-items-center mb-3 bg-white p-3 rounded shadow-sm">
+  <h4 class="mb-0 fw-bold">Call Recordings List</h4>
+	<div class="col-sm-6 d-flex">
+		<input class="form-control me-2" type="search" placeholder="Search by Topic and Description.."
+			aria-label="Search" [(ngModel)]="searchcallrecording" name="searchcallrecording" (ngModelChange)="onSearchChange($event)">
+			<button class="btn dashboard-button-bg text-nowrap" (click)="addEditRecording()">
+				<i class="fa fa-plus"></i> Add Call Recording
+			</button>
+</div>
+</div>
+
+<!-- <pre>{{callRecordingsList | json}}</pre> -->
+<!-- // Call Recordings List -->
+<div style="min-height: 450px;" class="bg-white">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sr. No</th>
+          <th scope="col">Topic</th>
+          <th scope="col">Recording Date</th>
+          <th scope="col">Description</th>
+          <!-- <th scope="col">Audio</th> -->
+          <th scope="col">Status</th>
+          <th class="text-center" scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let recording of callRecordingsList; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ recording.topic || "N/A" }}</td>
+          <td>{{ recording.recording_date | date : "dd/MM/YYYY" }}</td>
+          <td class="description-column">{{ recording.recording_description || "N/A" }}</td>
+          <!-- <td>
+          <audio controls *ngIf="recording.recording_url?.trim()" class="audio-player">
+            <source [src]="recording.recording_url" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <span *ngIf="!recording.recording_url?.trim()">Not Available</span>
+        </td> -->
+          <td class="align-middle" style="width: 100px;">
+            <div class="custom-toggle" [class.active]="recording.is_active === 1" (click)="toggleStatus(i, recording)">
+              <span class="toggle-label">
+                {{ recording.is_active === 1 ? "YES" : "NO" }}
+              </span>
+              <div class="toggle-knob"></div>
+            </div>
+          </td>
+          <td class="text-center" style="width: 150px;">
+            <button class="btn btn-sm view-button me-2" (click)="openViewModal(recording)" title="View Call Recording">
+              <i class="bi bi-soundwave"></i>
+            </button>
+            <button class="btn btn-sm view-button me-2" (click)="addEditRecording(recording)"
+              title="Edit Call Recording">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button class="btn btn-sm view-button" (click)="deleteModel(recording)" title="Delete Call Recording">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+		
+		
+  </div>
+	<div *ngIf="callRecordingsList.length === 0" class="alert alert-info alert-posstion">No call recording found.</div>
+</div>
+<div *ngIf="callRecordingsList.length > 0" class="has-text-centered">
+  <!-- <pagination-controls (pageChange)="currentPage = $event"></pagination-controls> -->
+			<pagination class="custom-pagination" [totalItems]="totalItems" [(ngModel)]="currentPage"
+				[itemsPerPage]="itemsPerPage" [maxSize]="5" [boundaryLinks]="true" previousText="«" nextText="»" firstText="First"
+				lastText="Last" (pageChanged)="onPageChange($event)">
+			</pagination>
+</div>
+
+<!-- // View Call Recording Modal -->
+<div bsModal #viewCallRecordingModal="bs-modal" class="modal fade remove-modal-bg" tabindex="-1" role="dialog"
+  aria-labelledby="deleteModalLabel" aria-hidden="true"
+  [config]="{ backdrop: 'static', keyboard: false, animated: true }">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-center fw-bold" id="deleteModalLabel">Topic: {{ viewAudioData?.topic || 'Call
+          Recording' }}
+        </h3>
+        <span _ngcontent-ng-c2817229796="" type="button" data-bs-dismiss="modal" (click)="closeModel()"
+          class="fa fa-remove close-modal position-absolute top-0 end-0 m-3 fs-5 cursor-pointer"></span>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="viewAudioData">
+          <div class="mb-1">
+            <p><strong>Description:</strong></p>
+            <p>{{ viewAudioData.recording_description || 'No description available' }}</p>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-6">
+              <!-- <p><strong>Date:</strong> {{ viewAudioData.recording_date | date:'medium' }}</p> -->
+              <p><strong>Date:</strong> {{ viewAudioData.recording_date | date:'dd/MM/yyyy' }}</p>
+
+            </div>
+            <div class="col-md-6">
+              <p><strong>Status:</strong> {{ viewAudioData.is_active ? 'Active' : 'Inactive' }}</p>
+            </div>
+          </div>
+          <p><strong>Call Recording:</strong></p>
+          <div class="audio-player-container text-center mt-2">
+            <audio *ngIf="viewAudioData.recording_url" controls class="w-100">
+              <source [src]="viewAudioData.recording_url" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <div *ngIf="!viewAudioData.recording_url" class="alert alert-warning">
+              No recording file available
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn view-button" (click)="closeModel()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Call Recording data Modal -->
+<div bsModal #showAddEditCallRecordingModal="bs-modal" class="modal fade remove-modal-bg" tabindex="-1" role="dialog"
+  aria-labelledby="callRecordingModalLabel" [config]="{ backdrop: 'static', keyboard: false }">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h3 class="modal-title fw-bold text-center">
+          {{ callRecordingForm.value.id ? "Edit" : "Add" }} Call Recording
+        </h3>
+        <span _ngcontent-ng-c2817229796="" type="button" data-bs-dismiss="modal" (click)="closeModel()"
+          class="fa fa-remove close-modal position-absolute top-0 end-0 m-3 fs-5 cursor-pointer"></span>
+      </div>
+      <form [formGroup]="callRecordingForm" (ngSubmit)="addOrUpdateCallRecording()">
+        <div class="modal-body">
+          <div class="row g-3">
+            <!-- Topic -->
+            <div class="col-md-6">
+              <label for="topic" class="form-label">Topic <span class="text-danger">*</span></label>
+              <input type="text" id="topic" class="form-control" formControlName="topic"
+                [ngClass]="{ 'is-invalid': callRecordingForm.get('topic')?.invalid && callRecordingForm.get('topic')?.touched }">
+              <div class="invalid-feedback" *ngIf="callRecordingForm.get('topic')?.errors?.['required']">
+                Topic is required
+              </div>
+            </div>
+            <!-- Recording Date -->
+            <div class="col-md-6">
+              <label for="recording_date" class="form-label">Recording Date <span class="text-danger">*</span></label>
+              <input type="date" id="recording_date" class="form-control" formControlName="recording_date"
+                [ngClass]="{ 'is-invalid': callRecordingForm.get('recording_date')?.invalid && callRecordingForm.get('recording_date')?.touched }">
+              <div class="invalid-feedback" *ngIf="callRecordingForm.get('recording_date')?.errors?.['required']">
+                Recording date is required
+              </div>
+            </div>
+
+            <!-- Recording File -->
+            <div class="col-md-6">
+              <label for="recording_url" class="form-label">
+                {{ callRecordingForm.value.id ? 'Update' : 'Upload' }} Recording
+                <span *ngIf="!callRecordingForm.value.id" class="text-danger">*</span>
+              </label>
+              <div *ngIf="callRecordingForm.value.id && existingFileUrl" class="mb-2">
+                <audio controls class="w-100">
+                  <source [src]="existingFileUrl" type="audio/mpeg">
+                </audio>
+                <small class="text-muted">Current recording</small>
+              </div>
+              <input type="file" id="recording_url" class="form-control" (change)="onFileSelected($event)"
+                accept="audio/*" [ngClass]="{ 'is-invalid': fileError }">
+
+              <div *ngIf="fileError" class="invalid-feedback d-block">
+                {{ fileError }}
+              </div>
+              <small *ngIf="callRecordingForm.value.id && !selectedFile" class="text-muted">
+                Leave empty to keep current file
+              </small>
+              <small class="form-text text-muted">
+                Max 10MB • Supported formats: MP3, WAV
+              </small>
+            </div>
+            <!-- Description -->
+            <div class="col-md-6">
+              <label for="recording_description" class="form-label">Description <span
+                  class="text-danger">*</span></label>
+              <textarea id="recording_description" class="form-control" rows="4" formControlName="recording_description"
+                [ngClass]="{ 'is-invalid': callRecordingForm.get('recording_description')?.invalid && callRecordingForm.get('recording_description')?.touched }"></textarea>
+              <div class="invalid-feedback"
+                *ngIf="callRecordingForm.get('recording_description')?.errors?.['required']">
+                Description is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-outline-secondary" (click)="closeModel()">Cancel</button>
+          <button type="submit" class="btn view-button" [disabled]="callRecordingForm.invalid || isSubmitting">
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-1"></span>
+            {{ callRecordingForm.value.id ? "Update" : "Save" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div bsModal #deleteCallRecordingModal="bs-modal" class="modal fade remove-modal-bg" tabindex="-1" role="dialog"
+  aria-labelledby="deleteModalLabel" aria-hidden="true"
+  [config]="{ backdrop: 'static', keyboard: false, animated: true }">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-center fw-bold" id="deleteModalLabel">Confirm Delete</h3>
+        <span _ngcontent-ng-c2817229796="" type="button" data-bs-dismiss="modal" (click)="closeModel()"
+          class="fa fa-remove close-modal position-absolute top-0 end-0 m-3 fs-5 cursor-pointer"></span>
+      </div>
+      <div class="modal-body text-center">
+        <b>
+          Are you sure you want to delete
+          <span class="text-danger">{{ currentCallRecord?.topic }}</span>
+          call recording?
+        </b>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" (click)="closeModel()">No</button>
+        <button type="button" class="btn btn-danger" (click)="deleteRecording()">
+          <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

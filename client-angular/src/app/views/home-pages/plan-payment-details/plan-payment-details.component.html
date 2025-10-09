@@ -1,0 +1,62 @@
+<section class="inner-hero position-relative">
+  <div class="container">
+      <div class="row inner-banner pb-2">
+          <div class="col-12 pb-1">
+              <p class="theme-text-secondary head-pera pb-0 pb-xxl-3 mb-0">Your Subscription Plan</p>
+              <h1 class="theme-text-dark pb-0 pb-xxl-4">Your Subscription Plan</h1>
+          </div>
+      </div>
+  </div>
+</section>
+<section class="filter pt-3">
+  <div class="container">
+      <div class="filter-banner">
+        <table class="table table-responsive table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Sr.No</th>
+              <th scope="col">PLAN</th>
+              <th scope="col">START</th>
+              <th scope="col">END</th>
+              <th scope="col">DURATION</th>
+              <th scope="col">AMOUNT</th>
+              <th scope="col">PAYMENT</th>
+              <th scope="col">METHOD</th>
+              <th scope="col">PAYMENT&nbsp;DATE</th>
+              <th scope="col">PLAN STATUS</th>
+              <!-- <th scope="col">Priority</th>
+              <th scope="col">Status</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let userPlan of userplanData; let i = index" style="background: red !important;">
+              <tr [title]="userPlan.description">
+                <th scope="row" class="align-middle">{{ i + 1 }}</th>
+                <td class="align-middle cursor-pointer">{{ userPlan.name || "N/A" }}</td>
+                <td class="align-middle">{{ userPlan.start_date | date:'MM/dd/yy' }}</td>
+                <td class="align-middle">{{ userPlan.end_date | date:'MM/dd/yy' }}</td>
+                <td class="align-middle">{{ userPlan.duration}} Days</td>
+                <td class="align-middle">₹{{ userPlan.amount || "N/A" }}</td>
+                <td class="align-middle">
+                  <label [ngClass]="{'text-success': userPlan.payment_status !== 'failed', 'text-danger': userPlan.payment_status === 'failed'}" class="p-1">
+                    {{ userPlan.payment_status }}
+                  </label>
+                </td>
+                <td class="align-middle">{{ userPlan.payment_type || "N/A" }}</td>
+                <td class="align-middle">{{ userPlan.payment_date  | date:'MM/dd/yy' }}</td>
+                <td class="align-middle">
+                  <label [ngClass]="{'bg-success': userPlan.is_active, 'bg-danger': !userPlan.is_active}" class="p-1 text-white">
+                    {{ userPlan.is_active ? 'Current': 'Expired' }}
+                  </label>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <div *ngIf="userplanData.length === 0" class="alert alert-info text-center mt-5">
+          No Subscription Plan found.
+        </div>
+          <!-- <pre >{{ userDetails | json }}</pre> -->
+      </div>
+  </div>
+</section>

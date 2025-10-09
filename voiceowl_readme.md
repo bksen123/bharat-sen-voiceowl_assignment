@@ -1,0 +1,198 @@
+# VoiceOwl Developer Evaluation Task
+
+## Project Overview
+
+**Role:** Node.js + TypeScript Developer (Full Stack optional with Angular)  
+**Focus:** Backend API, MongoDB, Swagger Documentation, Azure Integration, Pagination, Scalability, Frontend UI
+
+This project implements a **minimal transcription API service** that accepts audio URLs, mocks transcription, stores results in MongoDB, and supports Azure Speech-to-Text integration. The project also includes a **Swagger API documentation** and a planned **Angular frontend** for testing and viewing transcriptions.
+
+---
+
+## Project Structure
+
+```
+voiceowl_assignment/
+├─ src/
+│  ├─ controllers/
+│  │  └─ transcription.controller.ts
+│  ├─ services/
+│  │  └─ transcription.service.ts
+│  ├─ routes/
+│  │  └─ transcription.routes.ts
+│  ├─ models/
+│  │  └─ transcription.model.ts
+│  ├─ swagger.ts
+│  └─ app.ts
+├─ tests/
+│  └─ transcription.test.ts
+├─ package.json
+├─ tsconfig.json
+├─ .env
+└─ swagger.json / swagger.yaml
+```
+
+---
+
+## Backend Implementation
+
+### 1. API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/v1/transcription` | POST | Accepts audio URL and mocks transcription. Stores `{ audioUrl, transcription, createdAt, source }` in MongoDB. |
+| `/api/v1/transcription` | GET | Fetches transcriptions from the last 30 days with **pagination** (`page`, `limit` query parameters). |
+| `/api/v1/transcription/azure` | POST | Uses Azure Speech-to-Text (or mocks if no credentials) to transcribe audio and stores it in MongoDB. |
+
+---
+
+### 2. MongoDB
+
+- Database: MongoDB (local or Atlas)
+- Collection: `Transcriptions`
+- Document Schema:
+```ts
+{
+  audioUrl: string;
+  transcription: string;
+  source: 'mock' | 'azure';
+  createdAt: Date;
+}
+```
+- Index recommendation: For **efficient querying of last 30 days** in a large dataset (>100M records):
+```ts
+db.transcriptions.createIndex({ createdAt: -1 });
+```
+
+---
+
+### 3. Swagger Documentation
+
+- Swagger UI is available at: `http://localhost:4000/api-docs`
+- Swagger spec files: `swagger.json` and `swagger.yaml`
+- Documents all API endpoints including request/response schemas and query parameters (pagination).
+
+---
+
+### 4. Pagination
+
+- GET `/transcription` supports `page` and `limit` query parameters:
+  ```bash
+  curl "http://localhost:4000/api/v1/transcription?page=2&limit=5"
+  ```
+- Response includes:
+```json
+{
+  "page": 2,
+  "limit": 5,
+  "total": 23,
+  "totalPages": 5,
+  "items": [ ... ]
+}
+```
+
+---
+
+### 5. Azure Integration
+
+- Azure Speech-to-Text endpoint: `/transcription/azure`
+- Supports **mock** transcription if credentials are not provided
+- Environment variables:
+```env
+AZURE_SPEECH_KEY=dummy-key
+AZURE_REGION=dummy-region
+```
+- Optional: Multiple languages (e.g., `en-US`, `fr-FR`)
+
+---
+
+### 6. Scalability & System Design Notes
+
+To handle **10k+ concurrent requests**:
+
+1. **Caching:** Use Redis to cache recent transcriptions and reduce DB hits.  
+2. **Queues:** Offload transcription tasks to a job queue (BullMQ, RabbitMQ) for asynchronous processing.  
+3. **Containerization & Autoscaling:** Deploy backend in Docker containers, scale horizontally with Kubernetes.  
+
+Other improvements:
+- Use MongoDB replica set for high availability
+- Rate limiting for APIs
+- Proper logging & monitoring
+
+---
+
+### 7. Frontend (Angular) Plan
+
+- **Folder:** `/client`  
+- **Tech:** Angular + TypeScript + HttpClient  
+- **Components:**
+  - `TranscriptionFormComponent` → Input `audioUrl`, submit to POST `/transcription`
+  - `TranscriptionListComponent` → Fetch GET `/transcription` with pagination, display list
+- **Service:** `TranscriptionService` → Handles API calls
+- **Styling:** Tailwind CSS or Angular Material
+- **Optional:** Display Azure transcription separately, show real-time status if workflow enabled
+
+**Example UI Flow:**
+
+1. User enters audio URL → submits form  
+2. Backend returns transcription ID → display success message  
+3. User can view **all transcriptions** in a paginated table  
+4. (Optional) Azure transcription displayed with source label
+
+---
+
+### 8. Running the Project
+
+#### Backend:
+
+```bash
+cd backend
+npm install
+npm run start:dev   # runs in development with hot reload
+npm run build       # TypeScript build
+```
+
+#### Swagger UI:
+
+```
+http://localhost:4000/api-docs
+```
+
+#### Angular Frontend:
+
+```bash
+cd client
+npm install
+ng serve
+```
+
+---
+
+### 9. Test Cases
+
+- Tests are written using Jest in `/tests`
+- Example: `transcription.test.ts` for POST and GET endpoints
+- Run tests:
+```bash
+npm run test
+```
+
+---
+
+### 10. Assumptions
+
+- Audio download is mocked for demo purposes  
+- Azure integration is mocked if no key provided  
+- Only transcription and metadata are stored (no audio file upload)  
+- Pagination defaults: `page=1`, `limit=10`  
+
+---
+
+### 11. Improvements for Production
+
+- Real transcription with Azure or other STT services  
+- File upload support instead of URL only  
+- Auth & role-based access  
+- Logging, monitoring, and alerting  
+- Performance optimization for large datasets
+

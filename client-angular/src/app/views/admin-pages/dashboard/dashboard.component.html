@@ -1,0 +1,68 @@
+<div class="container py-4">
+  <div class="row g-4">
+    <div class="col-md-6 col-xl-3">
+      <div class="card shadow-sm h-100 gradient-card dash-box">
+        <div class="card-body">
+          <div class="dashboard-flex d-flex justify-content-between mb-5">
+            <div
+              class="bg-primary bg-opacity-10 text-primary  d-inline-flex align-items-center justify-content-center mb-3 dashboard-icon"
+              style="width: 50px; height: 50px;">
+              <i class="bi bi-people" style="font-size: 1.5rem"></i>
+            </div>
+            <h4 class="mb-2  ">{{dashboardCounts.membersCount}} </h4>
+          </div>
+
+          <p class="text-muted mb-0 head-pera">Members</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+      <div class="card shadow-sm h-100 gradient-card dash-box">
+        <div class="card-body">
+          <div class="dashboard-flex d-flex justify-content-between mb-5">
+            <div
+              class="bg-primary bg-opacity-10 text-primary  d-inline-flex align-items-center justify-content-center mb-3 dashboard-icon"
+              style="width: 50px; height: 50px;">
+              <i class="bi bi-calendar3-event" style="font-size: 1.5rem"></i>
+            </div>
+            <h4 class="mb-2 fw-bold">{{dashboardCounts.eventsCount}}</h4>
+          </div>
+          <p class="text-muted mb-0 head-pera">Events</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+      <div class="card shadow-sm h-100 gradient-card dash-box">
+        <div class="card-body">
+          <div class="dashboard-flex d-flex justify-content-between mb-5">
+            <div
+              class="bg-primary bg-opacity-10 text-primary  d-inline-flex align-items-center justify-content-center mb-3 dashboard-icon"
+              style="width: 50px; height: 50px;">
+              <i class="bi bi-newspaper" style="font-size: 1.5rem"></i>
+            </div>
+            <h4 class="mb-2 fw-bold">{{dashboardCounts.newsCount}}</h4>
+          </div>
+          <p class="text-muted mb-0 head-pera">News</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+      <div class="card shadow-sm h-100 gradient-card dash-box">
+        <div class="card-body">
+          <div class="dashboard-flex d-flex justify-content-between mb-5">
+            <div
+              class="bg-primary bg-opacity-10 text-primary  d-inline-flex align-items-center justify-content-center mb-3 dashboard-icon"
+              style="width: 50px; height: 50px;">
+              <i class="bi bi-person-rolodex" style="font-size: 1.5rem"></i>
+            </div>
+            <h4 class="mb-2 fw-bold">{{dashboardCounts.callRecordings}}</h4>
+          </div>
+          <p class="text-muted mb-0 head-pera">Call Recordings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div>
+	<pre>{{dashboardCounts | json}}</pre>
+</div> -->

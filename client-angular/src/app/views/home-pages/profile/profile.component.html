@@ -1,0 +1,239 @@
+<section class="inner-hero position-relative">
+  <div class="container">
+    <div class="row inner-banner pb-2">
+      <div class="col-12 pb-1">
+        <p class="theme-text-secondary head-pera pb-0 pb-xxl-3 mb-0">Create Profile</p>
+        <h1 class="theme-text-dark pb-0 pb-xxl-4">Create Profile</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <pre>{{userMemberForm.value | json}}</pre> -->
+
+<section class="profile-banner theme-top-specing-small">
+  <form [formGroup]="userMemberForm" (ngSubmit)="updateProfile()" class="" autocomplete="off">
+    <div class="container">
+      <div class="profile-form-head theme-form-radius theme-shadow-profile p-4">
+        <!-- Profile Image Section -->
+        <div class="row  d-flex align-items-center">
+          <div class="col-md-6 mb-2 mb-md-0">
+            <div class="profile-admin d-sm-flex align-items-center">
+              <div class="profile-img">
+                <div class="position-relative d-flex flex-column align-items-center">
+                  <label for="fileToUpload" class="rounded-circle mt-3">
+                    <div class="profile-pic text-center d-flex flex-column align-items-center">
+                      <img id="ImgPreview" [src]="profileImageView()" height="250px" width="250px"
+                        class="rounded-circle" style="cursor: pointer;" />
+                      <i class="fa fa-camera" style="position: relative;
+                    top: -40px;"></i>
+                    </div>
+                    <input type="File" name="fileToUpload" id="fileToUpload" class="form-control" accept="image/*"
+                      hidden (change)="onFileChangeForCrop($event)">
+                    <!-- <input type="File" name="fileToUpload" id="fileToUpload" class="form-control" accept="image/*"
+                      hidden (change)="onFileChange($event)"> -->
+                  </label>
+                  <button type="button" *ngIf="this.selectedFiles.imageUrl" (click)="deleteImg()"
+                    class="rmv add-close-button"><i class="fa fa-trash text-danger"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="profile-name ms-sm-4 mt-2 mt-sm-0">
+                <p class="theme-text-dark profile-head mb-0 mb-sm-2">{{usermember.name | titlecase }}</p>
+                <a href="mailto:alexarawles@gmail.com"
+                  class="theme-text-dark pera-small opacity-light">{{usermember.email}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-button text-md-end mt-4 mt-md-0">
+              <button type="submit" class="theme-secondary-btn subscrip-btn">
+                {{!usermember.verified ? 'Send Request to Verify Profile' : 'Update Profile'}} </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-form pt-5">
+          <!-- Basic Information Section -->
+          <div class="row mb-4">
+            <h5 class="theme-text-dark mb-3">Basic Information</h5>
+            <div class="col-md-4 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">Full Name</label>
+              <input type="text" id="fname" formControlName="name" class="form-control" maxlength="30"
+                placeholder="Your First Name" autocomplete="off">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['name'].invalid && userMemberForm.controls['name'].touched">
+                Name is required (Min 3 characters).
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 ps-md-2 ps-lg-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">E-mail</label>
+              <input type="text" id="email" formControlName="email" class="form-control" placeholder="Your E-mail"
+                autocomplete="off" readonly>
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['email'].invalid && userMemberForm.controls['email'].touched">
+                Valid email is required.
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label for="password" class="form-label mb-3">Password <span
+                  class="text-primary">(Optional)</span></label>
+              <input type="password" id="password" class="form-control" formControlName="password"
+                [ngClass]="{'is-invalid': userMemberForm.get('password').invalid && (userMemberForm.get('password').dirty || userMemberForm.get('password').touched)}">
+              <div
+                *ngIf="userMemberForm.get('password').invalid && (userMemberForm.get('password').dirty || userMemberForm.get('password').touched)"
+                class="invalid-feedback">
+                Password is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">Mobile Number</label>
+              <input type="number" id="number" formControlName="mobile_number" class="form-control" maxlength="15"
+                placeholder="Phone Number">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['mobile_number'].invalid && userMemberForm.controls['mobile_number'].touched">
+                Enter a valid phone number.
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 ps-md-2 ps-lg-4 d-flex align-items-center my-5">
+              <label class="d-block">Gender</label>
+              <div class="form-check form-check-inline mx-2">
+                <input class="form-check-input" type="radio" id="male" value="male" formControlName="gender" />
+                <label class="form-check-label" for="male">Male</label>
+              </div>
+              <div class="form-check form-check-inline mx-2">
+                <input class="form-check-input" type="radio" id="female" value="female" formControlName="gender" />
+                <label class="form-check-label" for="female">Female</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Information Section -->
+          <div class="row mb-4">
+            <h5 class="theme-text-dark mb-3">Company Information</h5>
+            <div class="col-md-6 mb-4 ">
+              <label class="pera-small theme-text-dark mb-3 d-block">Company Name</label>
+              <input type="text" id="cname" formControlName="company_name" class="form-control" maxlength="30"
+                placeholder="Enter Company Name">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['company_name'].invalid && userMemberForm.controls['company_name'].touched">
+                Company name is required (Min 3 characters).
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">Business Type</label>
+              <input type="text" id="business_type" formControlName="business_type" class="form-control"
+                placeholder="Business type">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['business_type'].invalid && userMemberForm.controls['business_type'].touched">
+                Business Type is required (Min 3 characters).
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 ">
+              <label class="pera-small theme-text-dark mb-3 d-block">Web Site</label>
+              <input type="text" id="website" formControlName="website" class="form-control" placeholder="website">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['website'].invalid && userMemberForm.controls['website'].touched">
+                Web Site is required (Min 3 characters).
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 ">
+              <label class="pera-small theme-text-dark mb-3 d-block">Group Since</label>
+              <input type="text" id="group_since" formControlName="group_since" class="form-control"
+                placeholder="Enter Group Since ">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['group_since'].invalid && userMemberForm.controls['group_since'].touched">
+                Group Since is required (Min 3 characters).
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Details Section -->
+          <div class="row mb-4">
+            <h5 class="theme-text-dark mb-3">Professional Details</h5>
+            <div class="col-md-6 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">Expertise</label>
+              <input type="text" id="expertise" formControlName="expertise" class="form-control"
+                placeholder="Enter expertise">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['expertise'].invalid && userMemberForm.controls['expertise'].touched">
+                Expertise is required (Min 3 characters).
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">State</label>
+              <input type="text" id="statename" formControlName="state" class="form-control" maxlength="30"
+                placeholder="Enter State Name">
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['state'].invalid && userMemberForm.controls['state'].touched">
+                State is required (Min 2 characters).
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Information Section -->
+          <div class="row mb-4">
+            <h5 class="theme-text-dark mb-3">Other Information</h5>
+            <div class="col-4 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">Short bio</label>
+              <textarea class="form-control required" rows="8" id="message" formControlName="short_bio"
+                placeholder="Your message..."></textarea>
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['short_bio'].invalid && userMemberForm.controls['short_bio'].touched">
+                Short bio is required.
+              </div>
+            </div>
+            <div class="col-4 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">Factory Address</label>
+              <textarea class="form-control required" rows="8" id="factory_address" formControlName="factory_address"
+                placeholder="Enter Factory Address"></textarea>
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['factory_address'].invalid && userMemberForm.controls['factory_address'].touched">
+                Factory Address is required.
+              </div>
+            </div>
+            <div class="col-4 mb-4">
+              <label class="pera-small theme-text-dark mb-3 d-block">Office Address</label>
+              <textarea class="form-control required" rows="8" id="office_address" formControlName="office_address"
+                placeholder="Enter Office Address"></textarea>
+              <div class="text-danger"
+                *ngIf="userMemberForm.controls['office_address'].invalid && userMemberForm.controls['office_address'].touched">
+                Office Address is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</section>
+
+
+<!-- Crop Modal -->
+<div class="modal fade remove-modal-bg" bsModal #imageCropModal="bs-modal" tabindex="-1" role="dialog"
+  [config]="{backdrop: 'static', keyboard: false}" style="z-index: 999999999999;">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crop Profile Image</h5>
+        <span type="button" class="btn-close" (click)="closeModal()" data-bs-dismiss="modal"
+        class="fa fa-remove close-modal position-absolute top-0 end-0 m-3 fs-5 cursor-pointer">
+      </span>
+      </div>
+      <div class="modal-body">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+          [resizeToWidth]="100" format="png" (imageCropped)="imageCropped($event)" >
+        </image-cropper>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn view-button" (click)="closeModal()">
+          Cancel
+        </button>
+        <button type="button" class="btn view-button" (click)="applyCroppedImage()"
+          [disabled]="!croppedImage || isCropping">
+          {{ isCropping ? 'Processing...' : 'Apply Crop' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

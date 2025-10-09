@@ -1,0 +1,143 @@
+
+  <section class="inner-hero position-relative">
+    <div class="container">
+      <div class="row inner-banner pb-2">
+        <div class="col-12 pb-1">
+          <p class="theme-text-secondary head-pera pb-0 pb-xxl-3 mb-0">News & PR</p>
+          <h1 class="theme-text-dark pb-0 pb-xxl-4">News & PR</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="filter pt-3">
+    <div class="container">
+      <div class="filter-banner">
+        <nav class="row navbar theme-bg-filter theme-radius-small">
+          <div class="col-sm-8">
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search by Name and Description.."
+                aria-label="Search" [(ngModel)]="searchnews" name="searchnews" (ngModelChange)="onSearchChange($event)">
+              <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+            </form>
+          </div>
+          <div class="col-sm-4 text-start text-sm-end mt-3 mt-sm-0">
+            <button> <img src="assets/member/filter-icon.svg" alt="" class="me-2"> Filter</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
+  <!-- <section> <pre>{{shownews | json }}</pre></section> -->
+
+  <section class="news theme-top-specing-small">
+    <div class="container">
+      <div  class="row news-banner theme-bg-primary d-flex align-items-center py-4 py-xl-0">
+        <div class="col-lg-6 ps-lg-3 ps-xxl-5">
+          <p class="event-sub-head" *ngIf="shownews.nextthreelatest.length">Trending News</p>
+          @for (news of shownews.nextthreelatest; track news.id) {
+            <div class="row d-flex align-items-center mb-4 theme-cursor">
+              <div (click)="redirect_to_login(news)" class="col-md-6">
+                <img [src]="news.news_banner ? news.news_banner : 'assets/event/event-city-img.webp'" alt="" class="w-100 theme-radius-medium" height="200px">
+              </div>
+              <div (click)="redirect_to_login(news)" class="col-md-6 mt-3 mt-md-0">
+                <p class="event-more-extra-small theme-text-member-info mb-1">Date - {{ news?.news_date | date: 'fullDate' }}</p>
+                <p class="theme-event-text head-pera mb-2">{{ news?.name ? (news.name.length > 50 ? (news.name | slice:0:50) + '...' : news.name) : '' | titlecase }}</p>
+                <p class="event-extra-small theme-light-news pt-1 mb-0">{{ news?.description ? (news.description.length > 100 ? (news.description | slice:0:50) + '...' : news.description) : '' | titlecase }}</p>
+              </div>
+            </div>
+            } @empty {
+              <div class="col-lg-12 pe-0  mt-lg-0">
+								<div  class="alert alert-info text-center mt-3">
+									There are no news.
+								</div>
+              </div>
+            }
+
+          <!-- <div class="row d-flex align-items-center mb-4">
+            <div (click)="redirect_to_login()" class="col-md-6">
+              <img src="assets/event/event-city-img.webp" alt="" class="w-100 theme-radius-medium">
+            </div>
+            <div (click)="redirect_to_login()" class="col-md-6 mt-3 mt-md-0">
+              <p class="event-more-extra-small theme-text-member-info mb-1">Race98 - 03 June 2023</p>
+              <p class="theme-event-text head-pera mb-2">Lorem Ipsum is simply dummy text of the printing</p>
+              <p class="event-extra-small theme-light-news pt-1 mb-0">NEW YORK—Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry.</p>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div (click)="redirect_to_login()" class="col-md-6">
+              <img src="assets/event/event-city-img.webp" alt="" class="w-100 theme-radius-medium">
+            </div>
+            <div (click)="redirect_to_login()" class="col-md-6 mt-3 mt-md-0">
+              <p class="event-more-extra-small theme-text-member-info mb-1">Race98 - 03 June 2023</p>
+              <p class="theme-event-text head-pera mb-2">Lorem Ipsum is simply dummy text of the printing</p>
+              <p class="event-extra-small theme-light-news pt-1 mb-0">NEW YORK—Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry.</p>
+            </div>
+          </div> -->
+        </div>
+        @if (shownews.latestnews.length)
+				{<div  (click)="redirect_to_login(shownews.latestnews[0])" class="col-lg-6 pe-0 mt-5 mt-lg-0 theme-cursor">
+          <div class="position-relative news-right" (click)="redirect_to_login(news)" [ngClass]="{'disable': !userDetails.sub_plan_status}">
+            <span class="position-absolute news-img-head head-pera theme-light-w">{{ shownews.latestnews[0]?.name ? (shownews.latestnews[0].name.length > 50 ? (shownews.latestnews[0].name | slice:0:50) + '...' : shownews.latestnews[0].name) : '' | titlecase }}</span>
+            <img [src]="shownews.latestnews[0].news_banner ? shownews.latestnews[0].news_banner : 'assets/news/news-banner.webp'" alt="" class="w-100 theme-radius-medium">
+            <div class="position-absolute news-img">
+              <p class="head-pera theme-light-w">Date - {{ shownews.latestnews[0]?.news_date | date: 'fullDate' }}
+              </p>
+              <h2 class="theme-light-w">{{ shownews.latestnews[0]?.description ? (shownews.latestnews[0].description.length > 100 ? (shownews.latestnews[0].description | slice:0:50) + '...' : shownews.latestnews[0].description) : '' | titlecase }}</h2>
+            </div>
+          </div>
+
+        </div>
+      }
+        @else {
+          <div class="col-lg-6 mt-lg-0">
+            <div  class="alert alert-info text-center mt-3">
+              There are no news.
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+  </section>
+
+  <section class="news-slider theme-top-specing-small">
+    <div class="container">
+      <div class="row">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            @for (news of shownews.allNews; track news.id) {
+            <div class="swiper-slide theme-cursor" (click)="redirect_to_login(news)" [ngClass]="{'disable': !userDetails.sub_plan_status}">
+              <img [src]="news.news_banner ? news.news_banner : 'assets/news/event-city-img.webp'" alt="" class=" theme-radius-medium mb-3 w-100" height="200px">
+              <div class="d-flex align-items-center mt-3 mb-3">
+                <!-- <div class="">
+                  <img src="assets/news/news-slider1.png" alt="">
+                </div> -->
+                <!-- <div class="">
+                  <p class="event-more-extra-small mb-0 pb-0 theme-event-text ps-3">{{news.category}}</p>
+                </div> -->
+              </div>
+              <p class="event-more-extra-small theme-text-member-info mb-3">Date - {{ news?.news_date | date: 'fullDate' }}</p>
+              <p class="theme-event-text head-pera mb-2">{{ news?.name ? (news.name.length > 100 ? (news.name | slice:0:50) + '...' : news.name) : '' | titlecase }}</p>
+              <p class="event-extra-small theme-light-news pt-1 mb-0">{{ news?.description ? (news.description.length > 100 ? (news.description | slice:0:50) + '...' : news.description) : '' | titlecase }}.</p>
+            </div>
+          }
+            @empty {
+              <div class="col-lg-12 pe-0 mt-5 mt-lg-0">
+								<div  class="alert alert-info text-center mt-5">
+									There are no news.
+								</div>
+              </div>
+            }
+
+          </div>
+          <div class="news-slider-arrow" [hidden]="!shownews.allNews.length">
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+

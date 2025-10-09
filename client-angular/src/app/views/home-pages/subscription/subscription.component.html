@@ -1,0 +1,163 @@
+<section class="inner-hero position-relative">
+  <div class="container">
+    <div class="row inner-banner pb-2">
+      <div class="col-12 pb-1">
+        <p class="theme-text-secondary head-pera pb-0 pb-xxl-3 mb-0">Subscriptions</p>
+        <h1 class="theme-text-dark pb-0 pb-xxl-4">Subscriptions</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="subscriptions theme-top-specing-small pb-5">
+  <div class="container">
+    <div class="theme-head text-center">
+      <h2 class="theme-text-primary mb-3">Our Subscriptions</h2>
+      <p class="theme-event-city event-city fw-normal">Pick an account plan that fits your workflow</p>
+    </div>
+    <!-- <pre >{{ subscriptions | json }}</pre> -->
+
+    <div class="row subscriptions-banner">
+      @for (item of subscriptions; track item ; let i = $index) {
+      <div class="col-lg-4 pe-lg-0" *ngIf="i === 0">
+        <div class="theme-bg-primary p-4 theme-sub-radius theme-border">
+          <p class="event-city theme-text-primary mb-1">{{item.name}}</p>
+          <!-- <p class="event-city theme-text-primary mb-1">Starter</p> -->
+          <h2 class="theme-text-event pb-2 pb-xxl-4">₹{{item.amount}} <span class="years">For {{item.duration}}
+              Days</span></h2>
+          <p class="sub-center-pera head-pera pb-2 pb-xxl-4">{{item.description}}</p>
+          <!-- <p class="sub-center-pera head-pera pb-2 pb-xxl-4">Free for ever when you host with Debbi. free for freelancers with Client Billing</p> -->
+          <div class="subscribe-list pb-5">
+            <ul>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">Members</li>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">Events </li>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">News & PR </li>
+              <li class="head-pera mb-2 mb-xxl-3">Code Export</li>
+              <li class="head-pera mb-2 mb-xxl-3">White labeling</li>
+              <li class="head-pera mb-2 mb-xxl-3">Site password protection</li>
+            </ul>
+          </div>
+          <div class="subscriptions-button" (click)="pay_for_plan(item)">
+            <button type="button" class="subscrip-btn-active">Upgrade plan</button>
+          </div>
+          <!-- <div class="subscriptions-button">
+                      <button type="button" class="subscrip-btn">Current plan</button>
+                  </div> -->
+        </div>
+      </div>
+      <div class="col-lg-4 px-lg-0" *ngIf="i === 1">
+        <div class="theme-bg-light px-4 px-xl-5 py-4 theme-shadow-large theme-sub-radius subscripe-active">
+          <p class="event-city theme-text-primary mb-1 recommended ">{{item.name}}</p>
+          <h2 class="theme-text-event pb-2 pb-xxl-4">₹{{item.amount}} <span class="years">For {{item.duration}}
+              Days</span></h2>
+          <p class="sub-center-pera head-pera pb-2 pb-xxl-4">{{item.description}}</p>
+          <div class="subscribe-list pb-5">
+            <ul>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">Members</li>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">Events </li>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">News & PR </li>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">Code Export</li>
+              <li class="head-pera mb-2 mb-xxl-3">White labeling</li>
+              <li class="head-pera mb-2 mb-xxl-3">Site password protection</li>
+            </ul>
+          </div>
+          <div class="subscriptions-button" (click)="pay_for_plan(item)">
+            <button type="button" class="subscrip-btn-active">Upgrade plan</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 pe-lg-0" *ngIf="i === 2">
+        <div class="theme-bg-primary p-4 theme-sub-radius theme-border">
+          <p class="event-city theme-text-primary mb-1">{{item.name}}</p>
+          <!-- <p class="event-city theme-text-primary mb-1">Starter</p> -->
+          <h2 class="theme-text-event pb-2 pb-xxl-4">₹{{item.amount}} <span class="years">For {{item.duration}}
+              Days</span></h2>
+          <p class="sub-center-pera head-pera pb-2 pb-xxl-4">{{item.description}}</p>
+          <div class="subscribe-list pb-5">
+            <ul>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">Members</li>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">Events </li>
+              <li class="head-pera mb-2 mb-xxl-3 check position-relative">News & PR </li>
+              <li class="head-pera mb-2 mb-xxl-3">Code Export</li>
+              <li class="head-pera mb-2 mb-xxl-3">White labeling</li>
+              <li class="head-pera mb-2 mb-xxl-3">Site password protection</li>
+            </ul>
+          </div>
+          <!-- <div class="subscriptions-button">
+                    <button type="button" class="subscrip-btn">Current plan</button>
+                </div> -->
+          <div class="subscriptions-button" (click)="pay_for_plan(item)">
+            <button type="button" class="subscrip-btn-active">Upgrade plan</button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <!-- <div class="row subscriptions-banner">
+          <div class="col-lg-4 pe-lg-0">
+              <div class="theme-bg-primary p-4 theme-sub-radius theme-border" >
+              <p class="event-city theme-text-primary mb-1">Starter</p>
+              <h2 class="theme-text-event pb-2 pb-xxl-4">Free</h2>
+              <p class="sub-center-pera head-pera pb-2 pb-xxl-4">Free for ever when you host with Debbi. free for freelancers with Client Billing</p>
+              <div class="subscribe-list pb-5">
+                  <ul>
+                      <li class="head-pera mb-2 mb-xxl-3 check position-relative" >4 Members</li>
+                      <li class="head-pera mb-2 mb-xxl-3 check position-relative">2 Events </li>
+                      <li class="head-pera mb-2 mb-xxl-3 check position-relative">2 News & PR </li>
+                      <li class="head-pera mb-2 mb-xxl-3">Code Export</li>
+                      <li class="head-pera mb-2 mb-xxl-3">White labeling</li>
+                      <li class="head-pera mb-2 mb-xxl-3">Site password protection</li>
+                  </ul>
+              </div>
+              <div class="subscriptions-button">
+                  <button type="button" class="subscrip-btn">Current plan</button>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 px-lg-0">
+              <div class="theme-bg-light px-4 px-xl-5 py-4 theme-shadow-large theme-sub-radius subscripe-active" >
+                  <p class="event-city theme-text-primary mb-1 recommended ">(Recommended)</p>
+                  <h2 class="theme-text-event pb-2 pb-xxl-4">$20 <span class="years">For 6 Months</span></h2>
+                  <p class="sub-center-pera head-pera pb-2 pb-xxl-4">Free for ever when you host with Debbi. free for freelancers with Client Billing</p>
+                  <div class="subscribe-list pb-5">
+                      <ul>
+                        <li class="head-pera mb-2 mb-xxl-3 check position-relative" >All Members</li>
+                        <li class="head-pera mb-2 mb-xxl-3 check position-relative">All Events </li>
+                        <li class="head-pera mb-2 mb-xxl-3 check position-relative">All News & PR </li>
+                          <li class="head-pera mb-2 mb-xxl-3 check position-relative">Code Export</li>
+                          <li class="head-pera mb-2 mb-xxl-3">White labeling</li>
+                          <li class="head-pera mb-2 mb-xxl-3">Site password protection</li>
+                      </ul>
+                  </div>
+                  <div class="subscriptions-button">
+                      <button type="button" class="subscrip-btn-active">Upgrade plan</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 ps-lg-0">
+              <div class="theme-bg-primary p-4 theme-sub-radius theme-border" >
+
+
+                  <p class="event-city theme-text-primary mb-1">Pro</p>
+                  <h2 class="theme-text-event pb-2 pb-xxl-4">$35 <span class="years">/Year</span></h2>
+                  <p class="sub-center-pera head-pera pb-2 pb-xxl-4">Free for ever when you host with Debbi. free for freelancers with Client Billing</p>
+                  <div class="subscribe-list pb-5">
+                      <ul>
+                        <li class="head-pera mb-2 mb-xxl-3 check position-relative" >All Members</li>
+                        <li class="head-pera mb-2 mb-xxl-3 check position-relative">All Events </li>
+                        <li class="head-pera mb-2 mb-xxl-3 check position-relative">All News & PR </li>
+                          <li class="head-pera mb-2 mb-xxl-3 check position-relative">Code Export</li>
+                          <li class="head-pera mb-2 mb-xxl-3 check position-relative">White labeling</li>
+                          <li class="head-pera mb-2 mb-xxl-3 check position-relative">Site password protection</li>
+                      </ul>
+                  </div>
+                  <div class="subscriptions-button">
+                      <button type="button" class="subscrip-btn">Upgrade plan</button>
+                  </div>
+              </div>
+          </div>
+
+        </div> -->
+  </div>
+</section>

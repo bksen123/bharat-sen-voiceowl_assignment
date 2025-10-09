@@ -1,0 +1,100 @@
+.view-button {
+    background-color: #1A3146;
+    color: white;
+}
+
+.toggle-icon {
+    transition: all 0.3s ease;
+}
+
+.custom-toggle {
+    width: 60px;
+    height: 25px;
+    background-color: #1A3146;
+    /* red by default */
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.custom-toggle.active {
+    background-color: #1A3146;
+    /* green */
+}
+
+.custom-toggle.active {
+    justify-content: end;
+}
+
+.toggle-label {
+    z-index: 1;
+}
+
+.toggle-knob {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    transition: right 0.3s ease;
+}
+
+.custom-toggle.active .toggle-knob {
+    right: 40px;
+}
+
+
+.audio-player {
+    width: 150px;
+    height: 40px;
+    max-width: 100%;
+}
+
+/* For better mobile experience */
+@media (max-width: 768px) {
+    .audio-player {
+        width: 120px;
+    }
+}
+
+
+
+
+
+
+
+
+/* Audio player styling */
+.audio-player-container {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  audio {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Modal content spacing */
+  .modal-body {
+    padding: 20px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .modal-dialog {
+      margin: 10px auto;
+    }
+  }

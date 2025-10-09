@@ -1,0 +1,51 @@
+.order-card {
+    color: #000;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+// .gradient-card {
+//     background: linear-gradient(360deg, rgb(166, 182, 238) 0%, rgba(76, 201, 240, 0.1) 100%);
+// }
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+.dashboard-flex h4{
+    // background: #1A3146;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #1A3146;
+    font-size: 1.75rem;
+
+}
+.dashboard-flex .bi::before,
+.dashboard-flex[class^=bi-]::before,
+.dashboard-flex[class*=" bi-"]::before{
+    color: #1A3146;
+    font-size: 26px;
+    line-height: 50px;
+  
+}
+.dashboard-icon{background-color: rgb(249, 249, 249) !important; border-radius: 4px; border: 1px solid #0000000f;}
+
+.dash-box p{text-transform: uppercase; font-weight: 700; color: #1A3146 !important;}

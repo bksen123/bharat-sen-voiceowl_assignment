@@ -1,0 +1,124 @@
+header{position: fixed;width: 100%;display: inline-block;z-index: 9999;
+    //  background: #f2f7fc;
+    background: #f8f9fe;
+    }
+header .nav-btn a{cursor: pointer;}
+header .nav-btn a,
+header nav .nav-item a{font-size: 16px; font-weight: 500;}
+header .nav-btn img{margin-right: 10px;}
+header .nav-item.active a{color:#fff; border-radius: 30px;}
+header .nav-link{padding: 7px 16px; margin: 0px 4px; display: inline-block}
+header .nav-link:hover,
+header .nav-link.active{background:#1A3146; border-radius: 30px; color: #fff;}
+@media (max-width: 1440px){
+header .nav-link{padding: 7px 12px;  }
+header nav .nav-item a{font-size: 14px;}
+}
+@media (max-width: 1200px){
+header{position: static;background: transparent;}
+header .nav-btn{padding-left: 16px; margin-top: 5px;}
+header .menu-top-banner{
+    border-radius: 0px;
+    padding: 25px 10px 15px;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: -100%;
+    right: 0;
+    top: 0;
+    background: #fff;
+    transition: all 0.5s cubic-bezier(0.0, 0, 0.3, .5);
+    opacity: .9;
+z-index: 111;
+}
+body.mobile-menu {
+   position:fixed;
+   left:0;
+   right:0;
+   margin:0 auto;
+}
+body.mobile-menu .menu_click .middle {
+    opacity: 0;
+}
+body.mobile-menu .menu_click .top {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    -webkit-transform: translateY(-50%) rotate(45deg);
+    -moz-transform: translateY(-50%) rotate(45deg);
+    -ms-transform: translateY(-50%) rotate(45deg);
+}
+body.mobile-menu .menu_click .bottom {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    -webkit-transform: translateY(-50%) rotate(-45deg);
+    -moz-transform: translateY(-50%) rotate(-45deg);
+    -ms-transform: translateY(-50%) rotate(-45deg);
+}
+.menu_click {clear: both;display: block;position: absolute;top: 26px;right: 12px;height: 21px;width: 25px;
+    cursor: pointer;transition: opacity .25s;z-index: 999;}
+.menu_click span {border-radius: 0px;background: #0C070F;display: block !important;border: none;height: 3px;width: 25px;
+    position: absolute;top: 0;left: 0;-webkit-transition: .35s;transition: .35s;cursor: pointer;}
+.menu_click span.middle{top: 8px;}
+.menu_click span.bottom {top: 16px;}
+.menu-top-banner {left: -100%;opacity: 0;transition: all 0.3s ease;position: fixed;}
+.menu-top-banner.active {left: 0%;opacity: 1;}
+}
+// @media (max-width: 992px){
+//     header{position: static;background: transparent;}
+//     header .nav-btn{padding-left: 16px; margin-top: 5px;}
+//     header .menu-top-banner{
+//         border-radius: 0px;
+//         padding: 25px 10px 15px;
+//         margin-top: 0px;
+//         width: 100%;
+//         height: 100%;
+//         position: fixed;
+//         left: -100%;
+//         right: 0;
+//         top: 0;
+//         background: #fff;
+//         transition: all 0.5s cubic-bezier(0.0, 0, 0.3, .5);
+//         opacity: .9;
+//     z-index: 111;
+//     }
+//     body.mobile-menu {
+//        position:fixed;
+//        left:0;
+//        right:0;
+//        margin:0 auto;
+//     }
+//     body.mobile-menu .menu_click .middle {
+//         opacity: 0;
+//     }
+//     body.mobile-menu .menu_click .top {
+//         top: 50%;
+//         transform: translateY(-50%) rotate(45deg);
+//         -webkit-transform: translateY(-50%) rotate(45deg);
+//         -moz-transform: translateY(-50%) rotate(45deg);
+//         -ms-transform: translateY(-50%) rotate(45deg);
+//     }
+//     body.mobile-menu .menu_click .bottom {
+//         top: 50%;
+//         transform: translateY(-50%) rotate(-45deg);
+//         -webkit-transform: translateY(-50%) rotate(-45deg);
+//         -moz-transform: translateY(-50%) rotate(-45deg);
+//         -ms-transform: translateY(-50%) rotate(-45deg);
+//     }
+//     .menu_click {clear: both;display: block;position: absolute;top: 19px;float: right;right: 12px;height: 21px;width: 25px;
+//         cursor: pointer;transition: opacity .25s;z-index: 999;}
+//     .menu_click span {border-radius: 0px;background: #0C070F;display: block !important;border: none;height: 3px;width: 25px;
+//         position: absolute;top: 0;left: 0;-webkit-transition: .35s;transition: .35s;cursor: pointer;}
+//     .menu_click span.middle{top: 8px;}
+//     .menu_click span.bottom {top: 16px;}
+//     .menu-top-banner {left: -100%;opacity: 0;transition: all 0.3s ease;position: fixed;}
+//     .menu-top-banner.active {left: 0%;opacity: 1;}
+//     }
+
+
+
+@media (min-width: 992px) {
+    .pb-lg-4 {
+         padding-bottom: 0 !important;
+    }
+}

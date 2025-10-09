@@ -1,0 +1,742 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'ngx-sharebuttons/themes/default';
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+// Theme text color
+.theme-text-secondary {
+    color: #F7BC35;
+}
+
+.theme-text-event {
+    color: #1A3146;
+}
+
+.theme-text-member-info {
+    color: #6941C6;
+}
+
+.theme-text-light {
+    color: #808080;
+}
+
+.theme-text-dark {
+    color: #0B090A;
+}
+
+.theme-text-primary {
+    color: #1A3146;
+}
+
+.theme-text-member {
+    color: #101828;
+}
+
+.theme-text-member-head {
+    color: #667085;
+}
+
+.theme-event-text {
+    color: #2D2C3C
+}
+
+.theme-event-city {
+    color: #5A5A5A
+}
+
+.theme-light-news {
+    color: #696868
+}
+
+.theme-light-w {
+    color: #fff
+}
+
+.theme-text-verified {
+    color: #00a651
+}
+
+// .theme-head-text{color: #1A3146;}
+// Theme text opacity
+.opacity-light {
+    opacity: .5;
+}
+
+// Theme Background color
+.theme-bg-primary {
+    background: #F4F7FF;
+}
+
+.theme-bg-light {
+    background: #fff;
+}
+
+.theme-bg-filter {
+    background: #F7F8F9;
+}
+
+.theme-bg-member {
+    background: #F9FAFB;
+}
+
+.theme-bg-dark {
+    background: #000000;
+}
+
+// Theme text size
+h1 {
+    font-size: 58px;
+    line-height: 65px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 38px;
+    line-height: 48px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.head-pera {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.pera-small {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+.event-head {
+    font-size: 58px;
+    font-weight: 600;
+    line-height: initial;
+}
+
+.event-sub-head {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.event-small {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.event-extra-small {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.event-more-extra-small {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.event-city {
+    font-size: 24px;
+    font-weight: 600
+}
+
+.profile-head {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+// Theme specing
+.theme-top-specing {
+    padding-top: 150px;
+}
+
+.theme-top-specing-small {
+    padding-top: 100px;
+}
+
+// Theme shadow
+.theme-shadow-small {
+    box-shadow: 4px 10px 30px 0 rgb(0 0 0 / 6%);
+}
+
+.theme-shadow-large {
+    box-shadow: 10px 10px 30px 0 rgba(0, 0, 0, 0.20);
+}
+
+.theme-shadow-medium {
+    box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.25);
+}
+
+.theme-shadow {
+    box-shadow: 4px 10px 30px 0 rgb(0 0 0 / 6%);
+}
+
+.theme-shadow-hero {
+    box-shadow: 10px 10px 40px 0 rgb(0 0 0 / 20%);
+}
+
+.theme-shadow-event {
+    box-shadow: 4px 10px 30px 0 rgb(0 0 0 / 10%);
+}
+
+.theme-shadow-form {
+    box-shadow: 0px 0px 20px 0 rgb(0 0 0 / 10%);
+}
+
+.theme-shadow-profile {
+    box-shadow: 0px 0px 10px 0 rgb(0 0 0 / 25%);
+}
+
+// Theme radius
+.theme-radius {
+    border-radius: 30px;
+}
+
+.theme-radius-small {
+    border-radius: 4px;
+}
+
+.theme-radius-medium {
+    border-radius: 6px;
+}
+
+.theme-sub-radius {
+    border-radius: 20px;
+}
+
+.theme-form-radius {
+    border-radius: 10px;
+}
+
+// Theme border
+.theme-border {
+    border: 3px solid #B9C7F2;
+}
+
+.theme-head {
+    padding-bottom: 86px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+// Theme btn
+.list-button-small,
+.list-button {
+    background: #fff;
+    border: 1px solid #F7BC35;
+    border-radius: 30px;
+    padding: 12px 30px;
+    display: inline-block;
+    margin-right: 20px;
+    color: #F7BC35
+}
+
+.list-button.active,
+.list-button-small:hover,
+.list-button:hover {
+    background: #F7BC35;
+    color: #fff;
+    border: 1px solid #F7BC35;
+}
+
+.list-button-small {
+    padding: 0px 14px;
+    font-size: 16px;
+}
+
+.subscrip-btn {
+    background: rgb(48 86 211 / 30%);
+    border: none;
+    color: #242430;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.subscrip-btn-active {
+    background: #1A3146;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.google-btn {
+    background: #fff;
+    border: 1px solid #000000;
+    color: #242430;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.form-center {
+    max-width: 660px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.disable {
+    position: relative;
+}
+
+.disable::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(249, 250, 251, 0.4);
+    top: 0;
+    left: 0;
+}
+
+.disable::before {
+    content: "";
+    position: absolute;
+    background-image: url(../public/assets/member/member-lock.png);
+    width: 94px;
+    height: 194px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.inner-hero::before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(180deg, rgba(76, 201, 240, 0) 0%, rgba(48, 86, 211, 0.3) 100%);
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 0px 0px 60px 60px;
+    z-index: -1;
+}
+
+.inner-hero .inner-banner {
+    padding-top: 130px;
+}
+
+// Filter section
+.filter form {
+    max-width: 425px;
+    width: 100%;
+}
+
+.filter button {
+    background: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #64748B;
+    font-weight: 400;
+}
+
+.filter .navbar {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.news-banner {
+    max-width: 1262px;
+    margin: auto;
+}
+
+.filter .filter-banner {
+    max-width: 1240px;
+    margin: auto;
+}
+
+.filter .form-control {
+    border: 1px solid #E7EAEE;
+    position: relative;
+    padding-left: 32px;
+}
+
+.filter form {
+    position: relative;
+}
+
+.filter form::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: translateY(-50%);
+    top: 58%;
+    left: 12px;
+    background-image: url(../public/assets/member/search-icon.svg);
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+}
+
+// Form control css
+.form-control {
+    transition: none;
+    padding: 13px 15px;
+    border-radius: 10px;
+    border: 2px solid #828282;
+    background: #F9F9F9;
+}
+
+.modal {
+    background-image: url(../public/assets/modal/sign-up-bg.webp);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.form-profile-control {
+    background: #F6F9FF;
+    border-radius: 8px;
+    color: #000;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 17px 20px;
+    border: none;
+    display: block;
+    width: 100%;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: none;
+    border-color: #828282;
+}
+
+.select-icon {
+    position: relative;
+}
+
+.select-icon::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 7px;
+    background-image: url(../public/assets/profile/select-arrow.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    right: 44px;
+    bottom: 22px;
+    cursor: pointer;
+}
+
+.select-icon .form-profile-control {
+    cursor: pointer;
+}
+
+.modal .modal-header {
+    display: block;
+}
+
+.modal .password-input::after,
+.modal .mail-input::after {
+    content: "";
+    position: absolute;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 16px;
+    height: 14px;
+    top: 45px;
+    left: 13px;
+}
+
+.modal .mail-input::after {
+    background-image: url(../public/assets/modal/modal-mail.svg);
+}
+
+.modal .password-input,
+.modal .mail-input {
+    position: relative;
+}
+
+.modal input[type=email] {
+    padding-left: 35px;
+}
+
+.modal .moda-or {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.modal .moda-or::after,
+.modal .moda-or::before {
+    content: "";
+    position: absolute;
+    width: 45%;
+    height: 1px;
+    background: rgb(102 102 102 / 60%);
+    top: 12px;
+}
+
+.modal .moda-or::after {
+    right: 0;
+}
+
+.modal .moda-or::before {
+    left: 0;
+}
+
+.close-modal {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    top: 0;
+    font-weight: 100;
+    font-size: 20px;
+    z-index: 999;
+}
+
+.remove-modal-bg {
+    background-image: none;
+}
+
+.profile-img img {
+    border-radius: 150px;
+}
+
+// Footer
+.footer-top::before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(180deg, rgba(76, 201, 240, 0) 0%, rgba(48, 86, 211, 0.3) 100%);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 0px 0px 16px 16px;
+    z-index: -1;
+}
+
+.footer-top {
+    padding: 20px 0;
+}
+
+footer ul li a {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    padding-bottom: 5px;
+}
+
+footer ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #1A3146;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+footer ul li a:hover::after {
+    width: 100%;
+}
+
+// Theme btn
+.theme-cursor {
+    cursor: pointer;
+}
+
+@media (max-width: 1601px) {
+    h1 {
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    .theme-head {
+        padding-bottom: 70px;
+    }
+
+    .form-control {
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 1440px) {
+    h1 {
+        font-size: 44px;
+        line-height: 60px;
+    }
+
+    .inner-hero::before {
+        border-radius: 0px 0px 40px 40px;
+    }
+
+    .theme-head {
+        padding-bottom: 60px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .theme-head {
+        padding-bottom: 50px;
+    }
+
+    .event-city {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .theme-head {
+        padding-bottom: 40px;
+    }
+
+    .event-city {
+        font-size: 20px;
+    }
+
+    .inner-hero .inner-banner {
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    h1 {
+        font-size: 40px;
+        line-height: 55px;
+    }
+
+    .inner-hero::before {
+        border-radius: 0px 0px 20px 20px;
+    }
+
+    h2 {
+        font-size: 34px;
+    }
+
+    .close-modal {
+        width: 10px;
+        height: 10px;
+        text-align: center;
+        line-height: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-control {
+        padding: 6px 15px;
+        border-radius: 5px;
+        border: 1px solid #828282;
+    }
+
+    .head-pera {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .modal .password-input::after,
+    .modal .mail-input::after {
+        top: 43px;
+    }
+}
+
+@media (max-width: 1201px) {
+    .theme-top-specing-small {
+        padding-top: 80px;
+    }
+}
+
+@media (max-width: 992px) {
+    .theme-top-specing-small {
+        padding-top: 60px;
+    }
+}
+
+// toster scss
+.toast-success {
+    background-color: #003f5c !important; // background-color: rgba(48, 86, 211, 0.3) !important;
+    color: #ffffff !important;
+}
+
+.toast-error {
+    background-color: #d00000 !important;
+    color: #fff !important;
+}
+
+.toast-bottom-right {
+    bottom: 20px !important;
+    right: 20px !important;
+}
+
+.curren_plan {
+    background-color: red;
+}
+
+.dashboard-button-bg {
+    background-color: #1A3146 !important;
+    color: white !important;
+}
+
+.ngx-pagination .current {
+    background: #1A3146 !important;
+}
+
+#toast-container.toast-bottom-right {
+  bottom: 1rem !important;
+  right: 1rem !important;
+  top: auto !important;
+  transform: none !important;
+  position: fixed;
+  z-index: 99999999999999;
+}
+.alert-posstion{
+			display: flex !important;
+			justify-content: center !important;
+			position: relative !important;
+			top: 160px !important;
+	
+}

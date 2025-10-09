@@ -1,0 +1,204 @@
+// body {
+//     font-family: 'Titillium Web', sans-serif;
+//     margin: 0;
+//     padding: 0;
+//     background-color: #fff;
+//     color: #333;
+//   }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 110px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.join-btn {
+  background-color: #1A3146;
+  color: #fff;
+  // padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  // font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  // font-weight: 600;
+  // height: 50px;
+}
+
+.join-btn:hover {
+  background-color: #37638b;
+}
+
+.date {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.main-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+article p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+article h3 {
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+article strong {
+  font-weight: 700;
+}
+
+aside {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.aside-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.aside-item img {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.aside-item .info {
+  flex: 1;
+}
+
+.aside-item .info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.aside-item .info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.aside-item .info .date {
+  font-size: 12px;
+  color: #aaa;
+}
+
+
+
+
+
+
+
+// common styles for buttons
+.view-event-button {
+  background-color: #1A3146;
+  color: white;
+}
+
+
+
+
+
+
+
+// styles for the event detail page
+.event-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-link {
+  color: #6c757d;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #0d6efd;
+}
+
+.event-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.event-category {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.event-meta {
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+.event-banner img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.event-content .lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #495057;
+}
+
+.join-btn {
+  // font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .event-title {
+    font-size: 1.8rem;
+  }
+
+  .event-header {
+    flex-direction: column;
+  }
+
+  .join-btn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}

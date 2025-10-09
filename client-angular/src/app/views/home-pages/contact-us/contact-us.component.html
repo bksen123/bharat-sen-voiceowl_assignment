@@ -1,0 +1,136 @@
+<section class="inner-hero position-relative">
+  <div class="container">
+    <div class="row inner-banner pb-2">
+      <div class="col-12 pb-1">
+        <p class="theme-text-secondary head-pera pb-0 pb-xxl-3 mb-0">Contact us</p>
+        <h1 class="theme-text-dark pb-0 pb-xxl-4">Contact us</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="contact-info theme-top-specing-small pb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 order-2 order-lg-1 ">
+        <div class="contact-left">
+          <h2>Let's talk with us</h2>
+          <p class="pera-small theme-text-dark mt-4">Questions, comments, or suggestions? Simply <br> fill in the form
+            and we’ll be in touch shortly.</p>
+
+          <div class="contact-banner mt-4 pt-2">
+            <div class="d-flex align-items-start contact-info mb-4">
+              <img src="assets/contact/location.svg" alt="Location" class="mt-1 pe-3">
+              <p class="mb-0 head-pera theme-text-primary fw-bold">P.No. 117, AB Rd, IDA Scheme 53, Ratanlok Colony,
+                Ratna Lok Colony, Indore, Madhya Pradesh 452010</p>
+            </div>
+            <div class=" contact-info mb-4">
+              <a href="tel:919039099370" class="head-pera theme-text-primary fw-bold">
+                <img src="assets/contact/phone.svg" class="pe-3" alt="Call">+91-90390-99370</a>
+            </div>
+            <div class=" contact-info mb-4">
+              <a href="mailto:hello@sfswebtech.com" class=" mail head-pera theme-text-primary fw-bold"><img
+                  src="assets/contact/mail.svg" alt="Mail" class="pe-3"> hello&#64;sfswebtech.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+        <div class="form-right">
+          <form id="contactForm" [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="mb-0  p-4 p-xl-5 form-banner theme-form-radius theme-shadow-form">
+            <div class="row">
+              <div class="col-md-6 mb-2 pe-md-3">
+                <div class="mb-3 position-relative">
+                  <!-- <label for="firstName" class="form-label mb-1 position-relative">
+                    First Name -->
+                    <!-- <span class="position-absolute" style="top: 0; right: -10px; color: #FF0000"><b>*</b></span> -->
+                  <!-- </label> -->
+                  <input type="text" id="name" formControlName="name" class="form-control
+                                   " maxlength="30" placeholder="Full name*" >
+                  <!-- <span id="firstNameError" class="error text-danger">Please complete this required field.</span> -->
+                  <div *ngIf="submitted && f['name'].errors" class="text-danger">
+                    <small *ngIf="f['name'].errors['required']">Full name is required.</small>
+                    <small *ngIf="f['name'].errors['maxlength']">Max 30 characters allowed.</small>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-md-6 mb-2 pe-md-3">
+                <div class="mb-3 position-relative">
+                  <!-- <label for="email" class="form-label mb-1 position-relative">
+                    Email -->
+                    <!-- <span class="position-absolute" style="top: 0; right: -10px; color: #FF0000"><b>*</b></span> -->
+                  <!-- </label> -->
+                  <input type="email" id="email" formControlName="email" class="form-control" maxlength="30" placeholder="Email*">
+                  <span id="emailError" class="error text-danger"></span>
+                  <div *ngIf="submitted && f.email.errors" class="text-danger">
+                    <small *ngIf="f.email.errors['required']">Email is required.</small>
+                    <small *ngIf="f.email.errors['email']">Enter a valid email address.</small>
+                    <small *ngIf="f.email.errors['maxlength']">Max 30 characters allowed.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-2 ps-md-3">
+                <div class="mb-3 position-relative">
+                  <!-- <label for="number" class="form-label mb-1 position-relative">
+                    Phone Number -->
+                    <!-- <span class="position-absolute" style="top: 0; right: -10px; color: #FF0000"><b>*</b></span> -->
+                  <!-- </label> -->
+                  <input type="number" id="number" formControlName="phone" class="form-control" maxlength="15" placeholder="Phone Number*">
+                  <span id="numberError" class="error text-danger"></span>
+                  <div *ngIf="submitted && f.phone.errors" class="text-danger">
+                    <small *ngIf="f.phone.errors['required']">Phone number is required.</small>
+                    <small *ngIf="f.phone.errors['pattern']">Enter a valid phone number (10-15 digits).</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-2 ps-md-3">
+                <div class="mb-3 position-relative">
+                  <!-- <label for="lastName" class="form-label mb-1 position-relative">
+                    Last Name -->
+                    <!-- <span class="position-absolute" style="top: 0; right: -10px; color: #FF0000"><b>*</b></span> -->
+                  <!-- </label> -->
+                  <input type="text" id="business_name" formControlName="business_name" class="form-control" maxlength="30" placeholder="business name*">
+                  <span id="lastNameError" class="error text-danger"></span>
+                  <div *ngIf="submitted && f.business_name.errors" class="text-danger">
+                    <small *ngIf="f.business_name.errors['required']">Business name is required.</small>
+                    <small *ngIf="f.business_name.errors['maxlength']">Max 30 characters allowed.</small>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-12 mb-3">
+                <div class="position-relative">
+                  <!-- <label for="message" class="form-label mb-1 position-relative">
+                    Message -->
+                    <!-- <span class="position-absolute" style="top: 0; right: -10px; color: #FF0000"><b>*</b></span> -->
+                  <!-- </label> -->
+                  <textarea rows="5" class="form-control required " id="message" formControlName="message"
+                    placeholder="Your message..." style=""></textarea>
+                  <!-- <span id="messageError" class="error text-danger">Please complete this required field.</span> -->
+                  <div *ngIf="submitted && f.message.errors" class="text-danger">
+                    <small *ngIf="f.message.errors['required']">Message is required.</small>
+                    <!-- <small *ngIf="f.message.errors['minlength']">Minimum 10 characters.</small> -->
+                  </div>
+                </div>
+              </div>
+
+              <input type="hidden" name="site_type" value="3">
+              <input type="hidden" id="servicetype" name="enquiry_type" value="1">
+
+              <div class="col-12 mt-4">
+                <button type="submit" class="theme-secondary-btn subscrip-btn" id="contactSubmit">Send Message</button>
+              </div>
+            </div>
+            <p id="successMessage" style="display: none; padding-top: 10px; color:#00C257"></p>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
