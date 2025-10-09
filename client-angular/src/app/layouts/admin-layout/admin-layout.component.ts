@@ -1,24 +1,37 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-import { currentUser, GlobalService, JwtService, LoadingComponent } from '../../shared-ui';
+import {
+  currentUser,
+  GlobalService,
+  JwtService,
+  LoadingComponent,
+} from '../../shared-ui';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule, RouterModule, LoadingComponent],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    CommonModule,
+    RouterModule,
+    LoadingComponent,
+  ],
   templateUrl: './admin-layout.component.html',
-  styleUrl: './admin-layout.component.scss'
+  styleUrl: './admin-layout.component.scss',
 })
 export class AdminLayoutComponent {
   isCollapsed = false;
   userDetails: currentUser = new currentUser();
-  constructor(public jwtService: JwtService,
+  constructor(
+    public jwtService: JwtService,
     public globalService: GlobalService,
     public router: Router,
-    public toastr: ToastrService) { }
+    public toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.userDetails = this.jwtService.getCurrentUser();
@@ -30,13 +43,12 @@ export class AdminLayoutComponent {
   }
 
   navItems = [
-    { label: 'Dashboard', link: '/admin/dashboard', icon: 'bi bi-speedometer2' },
-    { label: 'Members', link: '/admin/members', icon: 'bi bi-people' },
-    { label: 'Events', link: '/admin/events', icon: 'bi bi-calendar-event' },
-    { label: 'News', link: '/admin/news', icon: 'bi bi-newspaper' },
-    { label: 'Subscription', link: '/admin/subscription', icon: 'bi bi-clipboard2-check' },
-    { label: 'Contact Us', link: '/admin/contactus', icon: 'bi bi-person-lines-fill' },
-    { label: 'Call Recording', link: '/admin/call-recording', icon: 'bi bi-vinyl' },
+    { label: 'Dashboard', link: '/dashboard', icon: 'bi bi-speedometer2' },
+    {
+      label: 'Subscription',
+      link: '/subscription',
+      icon: 'bi bi-clipboard2-check',
+    },
   ];
 
   logout() {
