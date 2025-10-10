@@ -144,7 +144,7 @@ Other improvements:
 
 ---
 
-### 7. Frontend (Angular) Plan
+### 6. Frontend (Angular) Plan
 
 - **Folder:** `/client-angular`
 - **Tech:** Angular + TypeScript + HttpClient
@@ -162,7 +162,7 @@ Other improvements:
 
 ---
 
-### 8. Running the Project
+### 7. Running the Project
 
 #### Backend:
 
@@ -192,7 +192,7 @@ http://localhost:4200
 
 ---
 
-### 9. Test Cases
+### 8. Test Cases
 
 - Tests are written using Jest in `/tests`
 - Example: `transcription.test.ts` for POST and GET endpoints
@@ -204,7 +204,7 @@ npm run test
 
 ---
 
-### 10. Assumptions
+### 9. Assumptions
 
 - Audio download is mocked for demo purposes
 - Azure integration is mocked if no key provided
@@ -214,7 +214,7 @@ npm run test
 ---
 
 
-### 11. Deployment(additional)
+### 10. Deployment(additional)
 
 GitHub workflow pipeline added to automatically deploy the app to any cloud server. You need to provide the cloud path and cloud credentials in the workflow to enable deployment.
 ---
