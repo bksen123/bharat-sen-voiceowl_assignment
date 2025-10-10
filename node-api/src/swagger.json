@@ -39,9 +39,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "string"
-                    }
+                    "id": { "type": "string" }
                   }
                 }
               }
@@ -56,19 +54,13 @@
           {
             "in": "query",
             "name": "page",
-            "schema": {
-              "type": "integer",
-              "default": 1
-            },
+            "schema": { "type": "integer", "default": 1 },
             "description": "Page number"
           },
           {
             "in": "query",
             "name": "limit",
-            "schema": {
-              "type": "integer",
-              "default": 10
-            },
+            "schema": { "type": "integer", "default": 10 },
             "description": "Number of items per page"
           }
         ],
@@ -103,7 +95,48 @@
             }
           }
         }
+      },
+        "delete": {
+    "summary": "Delete a transcription by _id",
+    "tags": ["Transcription"],
+    "parameters": [
+      {
+        "name": "_id",
+        "required": true,
+         "in": "query",
+        "schema": { "type": "string" },
+        "description": "MongoDB _id of the transcription to delete"
       }
+    ],
+    "responses": {
+      "200": {
+        "description": "Transcription deleted successfully",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string", "example": "Transcription deleted successfully" }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Transcription not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string", "example": "Transcription with specified _id not found" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
     },
     "/transcription/azure": {
       "post": {
@@ -116,14 +149,8 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "audioUrl": {
-                    "type": "string",
-                    "example": "https://example.com/sample.mp3"
-                  },
-                  "language": {
-                    "type": "string",
-                    "example": "en-US"
-                  }
+                  "audioUrl": { "type": "string", "example": "https://example.com/sample.mp3" },
+                  "language": { "type": "string", "example": "en-US" }
                 }
               }
             }
@@ -136,9 +163,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {
-                    "id": { "type": "string" }
-                  }
+                  "properties": { "id": { "type": "string" } }
                 }
               }
             }

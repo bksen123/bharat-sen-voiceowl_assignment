@@ -54,8 +54,8 @@
       [ngStyle]="{ width: isCollapsed ? '80px' : '250px' }">
       <!-- Nav Links -->
       <ul class="nav flex-column w-100 flex-grow-1  py-3">
-        <li class="nav-item mb-2" *ngFor="let item of navItems">
-          <a class="nav-link text-dark d-flex align-items-center gap-2" [routerLink]="item.link"
+        <li class="nav-item mb-2" *ngFor="let item of navItems" [routerLink]="item.link">
+          <a class="nav-link text-dark d-flex align-items-center gap-2" 
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             [attr.title]="isCollapsed ? item.label : null">
             <i class="{{ item.icon }}"></i>

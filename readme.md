@@ -9,6 +9,12 @@ This project implements a **minimal transcription API service** that accepts aud
 
 ---
 
+**API Documentation:** http://localhost:4000/api-docs
+
+**Angular Client (built version):** http://localhost:4000
+
+**Notes:** You can access and use our Angular client source code in working mode. Follow the steps below to run the Angular project:
+
 ## Project Structure
 
 ```
@@ -25,7 +31,7 @@ voiceowl_assignment/
 │  ├─ middleware/
 │  │  └─ authentication.ts
 │  │  └─ multerMiddleware.ts
-│  │  └─ multerMiddleware.ts
+│  │  └─ messages.ts
 │  ├─ swagger.ts
 │  └─ app.ts
 ├─ tests/
