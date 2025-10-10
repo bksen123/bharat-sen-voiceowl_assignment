@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import JWT, { JwtPayload } from "jsonwebtoken";
-import { msgHandler } from "../core/messages";
+import { msgHandler } from "./messages";
 
 /* -------------------------------------------------------------------------- */
 /*                                 JWT Auth Verify                            */
