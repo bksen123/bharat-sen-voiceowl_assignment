@@ -213,8 +213,15 @@ npm run test
 
 ---
 
+### 10. Loaded Production Angular UI (additional)
 
-### 10. Deployment(additional)
+Node API is configured to serve the Angular build as static files from the public/ folder.
 
+The Angular app can be accessed via http://<server>:<port>/.
+
+API routes remain fully functional alongside the Angular frontend.
+---
+
+### 11. Deployment pipeline(additional)
 GitHub workflow pipeline added to automatically deploy the app to any cloud server. You need to provide the cloud path and cloud credentials in the workflow to enable deployment.
 ---
