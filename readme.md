@@ -9,6 +9,8 @@ This project implements a **minimal transcription API service** that accepts aud
 
 ---
 
+#### to run the follow the Backend:
+```bash
 #### To run the Backend
 
 ```bash
@@ -29,6 +31,7 @@ npm run build
 
 # Run in production mode
 npm run start:prod
+```
 
 
 **API Documentation:** http://localhost:4000/api-docs
