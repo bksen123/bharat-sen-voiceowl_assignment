@@ -1,12 +1,16 @@
 import { Request, Response, NextFunction } from "express";
-import JWT, { JwtPayload } from "jsonwebtoken";
 import { msgHandler } from "./messages";
+import JWT, { JwtPayload, SignOptions } from "jsonwebtoken";
+
+const secret = process.env.ACCESS_TOKEN_SECRET;
+
+if (!secret) {
+  throw new Error("ACCESS_TOKEN_SECRET is not defined");
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 JWT Auth Verify                            */
 /* -------------------------------------------------------------------------- */
-
-// callback
 export const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   const authorization = req.headers.authorization;
 
@@ -17,13 +21,13 @@ export const verifyToken = async (req: Request, res: Response, next: NextFunctio
   const token = authorization.split(" ")[1];
 
   try {
-    const authData = JWT.verify(token, process.env.ACCESS_TOKEN_SECRET!) as JwtPayload;
+    const authData = JWT.verify(token, secret) as JwtPayload;
 
     if (!authData) {
       return res.status(401).json({ message: msgHandler('token', 'UNAUTHORIZED_USER') });
     }
 
-    // Optionally attach authData to request
+    // Attach authData to request
     (req as any).authData = authData;
 
     return next();
@@ -43,7 +47,7 @@ export const currentLoggedUser = async (req: Request): Promise<JwtPayload | null
   const token = authorization.split(" ")[1];
 
   try {
-    const authData = JWT.verify(token, process.env.ACCESS_TOKEN_SECRET!) as JwtPayload;
+    const authData = JWT.verify(token, secret) as JwtPayload;
     return authData;
   } catch (error) {
     return null;
@@ -54,11 +58,11 @@ export const currentLoggedUser = async (req: Request): Promise<JwtPayload | null
 /*                                 JWT Auth Sign                               */
 /* -------------------------------------------------------------------------- */
 export const signJwt = async (payloadData: Record<string, any>): Promise<string> => {
-  console.log("process.env.ACCESS_TOKEN_TIMEOUT_DURATION", process.env.ACCESS_TOKEN_TIMEOUT_DURATION);
+  const expiresIn:any = process.env.ACCESS_TOKEN_TIMEOUT_DURATION || "1h"; // fallback
 
-  const token = JWT.sign(payloadData, process.env.ACCESS_TOKEN_SECRET!, {
-    expiresIn: process.env.ACCESS_TOKEN_TIMEOUT_DURATION,
-  });
+  const options: SignOptions = { expiresIn };
+
+  const token = JWT.sign(payloadData, secret, options);
 
   return token;
 };

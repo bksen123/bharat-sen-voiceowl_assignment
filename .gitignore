@@ -6,4 +6,4 @@
 #/node-api/.env
 /client-angular/dist
 /client-angular/node_modules
- client-angular/.angular
+/client-angular/.angular
