@@ -22,6 +22,10 @@ voiceowl_assignment/
 │  │  └─ transcription.routes.ts
 │  ├─ models/
 │  │  └─ transcription.model.ts
+│  ├─ middleware/
+│  │  └─ authentication.ts
+│  │  └─ multerMiddleware.ts
+│  │  └─ multerMiddleware.ts
 │  ├─ swagger.ts
 │  └─ app.ts
 ├─ tests/
