@@ -48,16 +48,13 @@ voiceowl_assignment/
 
 ### 1. API Endpoints
 
-| Endpoint                      | Method | Description                                                                                                    |
-| ----------------------------- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| `/api/v1/transcription`       | POST   | Accepts audio URL and mocks transcription. Stores `{ audioUrl, transcription, createdAt, source }` in MongoDB. |
-| `/api/v1/transcription`       | GET    | Fetches transcriptions from the last 30 days with **pagination** (`page`, `limit` query parameters).           |
-| `/api/v1/transcription`       |   DELETE    | DELETE transcriptions behalf _id (`_id`, query parameters).           
-                         |
+| Endpoint                         | Method | Description                                                                                                      |
+| --------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
+| `/api/v1/transcription`           | POST   | Accepts an audio URL and mocks transcription. Stores `{ audioUrl, transcription, createdAt, source }` in MongoDB. |
+| `/api/v1/transcription`           | GET    | Fetches transcriptions from the last 30 days with **pagination** using `page` and `limit` query parameters.       |
+| `/api/v1/transcription`           | DELETE | Deletes a transcription by its `_id` (passed as a query parameter).                                              |
+| `/api/v1/transcription/azure`     | POST   | Uses Azure Speech-to-Text (or mocks it) to transcribe audio and store the result in MongoDB.                     |
 
-| `/api/v1/transcription/azure` | POST   | Uses Azure Speech-to-Text (or mocks ) to transcribe audio and stores it in MongoDB.           |
-
----
 
 ### 2. MongoDB
 
