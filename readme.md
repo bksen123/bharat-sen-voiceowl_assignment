@@ -215,8 +215,7 @@ npm run test
 
 
 ### 10. Deployment(additional)
-
-GitHub workflow pipeline added to automatically deploy the app to any cloud server. You need to provide the cloud path and cloud credentials in the workflow to enable deployment.
+- GitHub workflow pipeline added to automatically deploy the app to any cloud server. You need to provide the cloud path and cloud credentials in the workflow to enable deployment.
 ---
 
 
