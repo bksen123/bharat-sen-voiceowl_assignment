@@ -5,7 +5,7 @@
 **Role:** Node.js + TypeScript Developer (Full Stack optional with Angular)
 **Focus:** Backend API, MongoDB, Swagger Documentation, Azure Integration, Pagination, Scalability, Frontend UI
 
-This project implements a **minimal transcription API service** that accepts audio URLs, mocks transcription, stores results in MongoDB, and supports Azure Speech-to-Text integration  The project also includes a **Swagger API documentation** and a planned **Angular frontend** for testing and viewing transcriptions, and also added **GitHub workflow pipeline with YML file** to deploy automatically to any cloud server using the pipeline.
+This project implements a **minimal transcription API service** that accepts audio URLs, mocks transcription, stores results in MongoDB, and supports Azure Speech-to-Text integration  The project also includes a **Swagger API documentation** and a planned **Angular frontend** for testing and viewing transcriptions, and also added **additional GitHub workflow pipeline with YML file** to deploy automatically to any cloud server using the pipeline.
 
 ---
 
@@ -76,7 +76,7 @@ voiceowl_assignment/
 | Endpoint                         | Method | Description                                                                                                      |
 | --------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
 | `/api/v1/transcription`           | POST   | Accepts an audio URL and mocks transcription. Stores `{ audioUrl, transcription, createdAt, source }` in MongoDB. |
-| `/api/v1/transcription`           | GET    | Fetches transcriptions from the last 30 days with **pagination** using `page` and `limit` query parameters.       |
+| `/api/v1/transcription`           | GET    | Fetches transcriptions from the last 30 days with **pagination (additional)** using `page` and `limit` query parameters.       |
 | `/api/v1/transcription`           | DELETE | Deletes a transcription by its `_id` (passed as a query parameter).                                              |
 | `/api/v1/transcription/azure`     | POST   | Uses Azure Speech-to-Text (or mocks it) to transcribe audio and store the result in MongoDB.                     |
 
@@ -104,7 +104,7 @@ db.transcriptions.createIndex({ createdAt: -1 });
 
 ---
 
-### 3. Swagger Documentation
+### 3. Swagger Documentation(additional)
 
 - Swagger UI is available at: `http://localhost:4000/api-docs`
 - Swagger spec files: `swagger.json`
@@ -180,7 +180,7 @@ npm run start:prod
 http://localhost:4000/api-docs
 ```
 
-#### Angular Frontend:
+#### Angular Frontend(additional):
 
 ```bash
 cd client-angular
@@ -211,4 +211,10 @@ npm run test
 - Only transcription and metadata are stored (no audio file upload)
 - Pagination defaults: `page=1`, `limit=10`
 
+---
+
+
+### 11. Deployment(additional)
+
+GitHub workflow pipeline added to automatically deploy the app to any cloud server. You need to provide the cloud path and cloud credentials in the workflow to enable deployment.
 ---
