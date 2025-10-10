@@ -182,6 +182,8 @@ http://localhost:4000/api-docs
 cd client-angular
 npm install
 ng serve
+
+http://localhost:4200
 ```
 
 ---
