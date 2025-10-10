@@ -112,27 +112,8 @@ db.transcriptions.createIndex({ createdAt: -1 });
 
 ---
 
-### 4. Pagination
 
-- GET `/transcription` supports `page` and `limit` query parameters:
-  ```bash
-  curl "http://localhost:4000/api/v1/transcription?page=2&limit=5"
-  ```
-- Response includes:
-
-```json
-{
-  "page": 2,
-  "limit": 5,
-  "total": 23,
-  "totalPages": 5,
-  "items": [ ... ]
-}
-```
-
----
-
-### 5. Azure Integration
+### 4. Azure Integration
 
 - Azure Speech-to-Text endpoint: `/transcription/azure`
 - Supports **mock** transcription because we don't have credentials and also are not provided
@@ -147,7 +128,7 @@ AZURE_REGION=dummy-region
 
 ---
 
-### 6. Scalability & System Design Notes
+### 5. Scalability & System Design Notes
 
 To handle **10k+ concurrent requests**:
 
