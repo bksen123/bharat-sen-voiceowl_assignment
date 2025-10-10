@@ -5,7 +5,7 @@
 **Role:** Node.js + TypeScript Developer (Full Stack optional with Angular)
 **Focus:** Backend API, MongoDB, Swagger Documentation, Azure Integration, Pagination, Scalability, Frontend UI
 
-This project implements a **minimal transcription API service** that accepts audio URLs, mocks transcription, stores results in MongoDB, and supports Azure Speech-to-Text integration  The project also includes a **Swagger API documentation** and a planned **Angular frontend** for testing and viewing transcriptions, and also added **additional GitHub workflow pipeline with YML file** to deploy automatically to any cloud server using the pipeline.
+This project implements a **minimal transcription API service** that accepts audio URLs, mocks transcription, stores results in MongoDB, and supports Azure Speech-to-Text integration  The project also includes a **Swagger API documentation(additional)** and a planned **Angular frontend** for testing and viewing transcriptions, and also added **additional GitHub workflow pipeline with YML file** to deploy automatically to any cloud server using the pipeline.
 
 ---
 
