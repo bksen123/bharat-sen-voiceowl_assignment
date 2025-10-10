@@ -49,7 +49,6 @@ export async function listTranscriptionsPaginated(page = 1, limit = 10) {
   const total = await Transcription.countDocuments({
     createdAt: { $gte: since },
   });
-
   return {
     page,
     limit,

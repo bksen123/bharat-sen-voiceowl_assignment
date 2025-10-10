@@ -135,7 +135,7 @@ db.transcriptions.createIndex({ createdAt: -1 });
 ### 5. Azure Integration
 
 - Azure Speech-to-Text endpoint: `/transcription/azure`
-- Supports **mock** transcription if credentials are not provided
+- Supports **mock** transcription because we don't have credentials and also are not provided
 - Environment variables:
 
 ```env
