@@ -6,6 +6,7 @@ import app from './app';
 import { config } from './config';
 
 const start = async () => {
+  console.log(" process.env.MONGO_URI===========",  process.env.MONGO_URI);
   try {
     const mongoUri = process.env.MONGO_URI || config.mongoUri;
     await mongoose.connect(mongoUri);
@@ -18,5 +19,4 @@ const start = async () => {
     process.exit(1);
   }
 };
-
 start();

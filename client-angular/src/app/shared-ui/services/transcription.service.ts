@@ -12,28 +12,30 @@ export class TranscriptionService {
 
   constructor(private apiService: ApiService, private http: HttpClient) {}
 
-  public saveSubscriptionInfo(param: object): Observable<any> {
-    return this.apiService.post(`${this.transcription}/create`, param).pipe(
+  public saveTranscription(param: object): Observable<any> {
+    return this.apiService.post(`${this.transcription}`, param).pipe(
       catchError((error) => {
         return throwError(() => error);
       })
     );
   }
 
-  public deleteSubscription(param: any): Observable<any> {
-    return this.apiService.delete(`${this.transcription}/delete`, param).pipe(
-      catchError((error) => {
-        return throwError(() => error);
-      })
-    );
-  }
-
-  public getAllSubscription(param?: object): Observable<any> {
-    return this.apiService.post(`${this.transcription}/getAll`, param).pipe(
+ public getAllTranscription(param?: any): Observable<any> {
+    return this.apiService.get(`${this.transcription}?page=${param.page}&limit=${param.limit}`).pipe(
       map((data) => data),
       catchError((error) => {
         return throwError(() => error);
       })
     );
   }
+
+  public deleteTranscription(param: any): Observable<any> {
+    return this.apiService.delete(`${this.transcription}?_id=${param._id}`).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+ 
 }

@@ -58,3 +58,12 @@ export async function listTranscriptionsPaginated(page = 1, limit = 10) {
     items,
   };
 }
+
+export async function deleteTranscriptionById(_id: string) {
+  const deleted = await Transcription.findByIdAndDelete(_id);
+  console.log("deleted", deleted);
+  if (!deleted) {
+    throw new Error("Transcription not found");
+  }
+  return { message: "Transcription deleted successfully", deleted: deleted };
+}

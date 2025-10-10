@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, Subject, throwError } from 'rxjs';
-import { JwtService, SubscriptionService, UsersService } from '..';
+import { JwtService, UsersService } from '..';
 import { environment } from '../../../environments/environment';
 import { ApiService } from './api.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
@@ -23,7 +23,6 @@ export class GlobalService {
     private titleService: Title,
     private apiService: ApiService,
     private httpClient: HttpClient,
-    private subscribtionservice:SubscriptionService
   ) { }
 
   patternMatchRegex(inputVal: any, InputType: string) {

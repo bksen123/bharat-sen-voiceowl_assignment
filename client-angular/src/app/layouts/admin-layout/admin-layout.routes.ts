@@ -9,18 +9,18 @@ const adminlayoutRoutes: Routes = [
       import('./admin-layout.component').then((m) => m.AdminLayoutComponent), // Use the correct component reference here
     children: [
       {
-        path: '',
+        path: 'dashboard',
         loadComponent: () =>
           import('../../views/admin-pages/dashboard/dashboard.component').then(
             (m) => m.DashboardComponent
           ), // Same here for DashboardComponent
       },
       {
-        path: 'subscription',
+        path: 'transcriptions',
         loadComponent: () =>
           import(
-            '../../views/admin-pages/transcription/subscription.component'
-          ).then((m) => m.SubscriptionComponent),
+            '../../views/admin-pages/transcription/transcription.component'
+          ).then((m) => m.transcriptionComponent),
       },
     ],
   },

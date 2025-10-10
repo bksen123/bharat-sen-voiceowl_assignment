@@ -6,10 +6,10 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: '/admin/transcriptions',
   },
   {
-    path: '',
+    path: 'admin',
     loadChildren: () => import('./layouts/admin-layout/admin-layout.routes'),
   },
 ];

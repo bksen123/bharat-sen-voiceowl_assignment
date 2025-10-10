@@ -43,10 +43,10 @@ export class AdminLayoutComponent {
   }
 
   navItems = [
-    { label: 'Dashboard', link: '/dashboard', icon: 'bi bi-speedometer2' },
+    { label: 'Dashboard', link: '/admin/dashboard', icon: 'bi bi-speedometer2' },
     {
-      label: 'Subscription',
-      link: '/subscription',
+      label: 'Transcriptions',
+      link: '/admin/transcriptions',
       icon: 'bi bi-clipboard2-check',
     },
   ];

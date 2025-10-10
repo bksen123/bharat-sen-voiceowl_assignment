@@ -49,7 +49,7 @@ export class ApiService {
     // let headers = this.getHeader();
     const apiURL = this.apiBase + url;
     return this.httpClient
-      .post(apiURL, param, { withCredentials: true })
+      .delete(apiURL)
       .pipe(map((res) => res),
         catchError(async (error) => this.errorHandling(error))
       );

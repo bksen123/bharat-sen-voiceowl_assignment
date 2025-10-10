@@ -3,6 +3,7 @@
 # Compiled output
 /node-api/dist
 /node-api/node_modules
-/node-api/.env
+#/node-api/.env
 /client-angular/dist
 /client-angular/node_modules
+ client-angular/.angular

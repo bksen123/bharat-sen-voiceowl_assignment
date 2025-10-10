@@ -28,9 +28,9 @@ export class transcriptionComponent {
   };
   imageError: string = '';
   isImage: boolean = false;
-  searchtranscription: any = '';
+  searchTranscription: any = '';
   currentPage = 1;
-  itemsPerPage = 8;
+  itemsPerPage = 10;
   totalItems: number = 0;
   private searchSubject = new Subject<string>();
   private subscriptions = new Subscription();
@@ -50,12 +50,12 @@ export class transcriptionComponent {
   ) {}
 
   ngOnInit(): void {
-    this.fetchtranscriptions();
+    this.fetchTranscriptions();
     const searchSub = this.searchSubject
       .pipe(debounceTime(500))
       .subscribe((value: string) => {
-        this.searchtranscription = value.trim();
-        this.fetchtranscriptions();
+        this.searchTranscription = value.trim();
+        this.fetchTranscriptions();
       });
 
     this.transcriptions.add(searchSub);
@@ -67,27 +67,28 @@ export class transcriptionComponent {
 
   onPageChange(event: { page: number }): void {
     this.currentPage = event.page;
-    this.fetchtranscriptions();
+    this.fetchTranscriptions();
   }
 
   onItemsPerPageChange(): void {
     this.currentPage = 1;
-    this.fetchtranscriptions();
+    this.fetchTranscriptions();
   }
 
-  fetchtranscriptions(): void {
-    this.spinner.show();
+  fetchTranscriptions(): void {
+    // this.spinner.show();
     const params = {
-      searchtranscriptionValue: this.searchtranscription,
+      searchTranscriptionValue: this.searchTranscription,
       page: this.currentPage,
       limit: this.itemsPerPage,
     };
     console.log('params', params);
-    this.transcriptionService.saveSubscriptionInfo(params).subscribe({
+    this.transcriptionService.getAllTranscription(params).subscribe({
       next: (res: any) => {
+        console.log("res===================", res);
         if (res.status == 200) {
-          this.transcriptionList = res?.data || [];
-          this.totalItems = res.pagination.total || 0;
+          this.transcriptionList = res?.data.items || [];
+          this.totalItems = res.data.total || 0;
           this.spinner.hide();
         } else {
           this.transcriptionList = [];
@@ -118,28 +119,52 @@ export class transcriptionComponent {
     this.confirmDeleteId = null;
   }
 
-  confirmDelete() {}
+  confirmDelete(transcription: newTranscription) {
+    this.newTranscription = transcription;
+    this.deletetranscriptionModal.show();
+  }
 
-  onFileChange(event: any) {
-    const fileData = event.target.files[0];
-    if (!fileData.name.match(/\.(jpg|jpeg|png)$/)) {
-      this.toastr.warning(
-        'You can upload only jpg, jpeg, png, gif image.',
-        'Warning'
+  deleteTranscription(): void {
+    this.spinner.show();
+    this.transcriptionService.deleteTranscription({ _id: this.newTranscription._id}).subscribe({
+      next: (response: any) => {
+        if (response.status === 200) {
+          this.toastr.success(response.message, 'Success!');
+        } else {
+          this.toastr.error(response.message, 'Error!');
+        }
+        this.fetchTranscriptions();
+        this.closeModel();
+      },
+      error: (err: any) => {
+        this.toastr.error('Something went wrong. Please try again.');
+        this.spinner.hide();
+      }
+    });
+  }
+
+  saveupdateTranscription(changeStatus?: any): void {
+    let postData: newTranscription = changeStatus || this.newTranscription;
+    if (!changeStatus && this.transcriptionFormRef.invalid) {
+      Object.values(this.transcriptionFormRef.controls).forEach((control: any) =>
+        control.markAsTouched()
       );
-      return false;
-    } else if (event.target.files && event.target.files.length) {
-      this.selectedFiles.imageInfo = event.target.files[0];
-      const reader = new FileReader(); // File Preview
-      const [file] = event.target.files;
-      reader.onload = (e: any) => {
-        this.selectedFiles.imageUrl = e.target.result;
-        // this.imageSrc = reader.result as string;
-        this.isImage = true;
-      };
-      reader.readAsDataURL(file);
+      return;
     }
-    return;
+    this.transcriptionService.saveTranscription(postData).subscribe({
+      next: (response: any) => {
+        if (response.status === 200) {
+          this.toastr.success(response.message, 'Success!');
+        } else {
+          this.toastr.error(response.message, 'Error!');
+        }
+        this.fetchTranscriptions();
+        this.closeModel();
+      },
+      error: (err) => {
+        this.toastr.error(err, 'Error!');
+      }
+    });
   }
 
   closeModel() {

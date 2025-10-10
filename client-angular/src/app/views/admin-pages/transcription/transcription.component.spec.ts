@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { transcriptionComponent } from './transcription.component';
 
-import { SubscriptionComponent } from './subscription.component';
 
-describe('SubscriptionComponent', () => {
-  let component: SubscriptionComponent;
-  let fixture: ComponentFixture<SubscriptionComponent>;
+describe('transcriptionComponent', () => {
+  let component: transcriptionComponent;
+  let fixture: ComponentFixture<transcriptionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubscriptionComponent]
+      imports: [transcriptionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SubscriptionComponent);
+    fixture = TestBed.createComponent(transcriptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

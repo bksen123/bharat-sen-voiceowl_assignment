@@ -12,18 +12,16 @@
 
 export const environment: any = {
   production: false,
-  baseUrl: 'https://activelearnergroup.com/api/v1/',
-  shareUrl: 'https://activelearnergroup.com/',
-  // baseUrl: 'http://localhost:3000/api/v1/',
+  baseUrl: 'http://localhost:4000/api/v1/',
   // baseUrl: '/',
-  cookieToken: 'actives1qazLearnerxsw2Group',
+  cookieToken: 'voices1qazLearnerxsw2Group',
   cookieExpirationTime: 10,
   sessionTime: 5,
   uploadsFolder: {
     profile: 'profile',
   },
-  jwtTokenKey: 'activeLearnerGroup_JwtTken',
-  currentUserKey: 'activeLearnerGroup_currentUser',
+  jwtTokenKey: 'voiceLearnerGroup_JwtTken',
+  currentUserKey: 'voiceLearnerGroup_currentUser',
   role: {
     userRole: 'user',
     adminRole: 'admin',
