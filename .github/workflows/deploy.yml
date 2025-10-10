@@ -1,0 +1,64 @@
+name: Deploy  Backend via SFTP (via Home Dir Upload)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: |
+        npm config set legacy-peer-deps true
+        npm ci --legacy-peer-deps
+
+
+    - name: Zip project (exclude unnecessary files)
+      run: |
+        zip -r deploy.zip . -x  ".git/*" ".github/*" "deploy.zip"
+
+    - name: Ensure remote folder exists
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.SFTP_SERVER }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        port: ${{ secrets.SFTP_PORT }}
+        script: |
+          mkdir -p /home/voiceowl
+
+    - name: Upload zip to home directory via SFTP
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      with:
+        username: ${{ secrets.SFTP_USERNAME }}
+        server: ${{ secrets.SFTP_SERVER }}
+        port: ${{ secrets.SFTP_PORT }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        local_path: "deploy.zip"
+        remote_path: "/home/voiceowl/deploy.zip"
+        sftp_only: true
+        args: "-o StrictHostKeyChecking=no"
+
+    - name: SSH - Deploy backend with password auth
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.SFTP_SERVER }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        port: ${{ secrets.SFTP_PORT }}
+        script: |
+          cd /home/voiceowl
+          unzip -o deploy.zip
+          rm deploy.zip
+          /root/.nvm/versions/node/v20.19.4/bin/pm2 restart onboarding-sme || /root/.nvm/versions/node/v20.19.4/bin/pm2 start index.js --name onboarding-sme
