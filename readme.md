@@ -213,7 +213,7 @@ npm run test
 
 ---
 
-### Loaded Production Angular UI (additional)
+### Loaded Production Build Angular UI (additional)
 
 - Node API is configured to serve the Angular build as static files from the public/ folder.
 - The Angular app can be accessed via http://<server>:<port>/.
