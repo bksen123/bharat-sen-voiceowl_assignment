@@ -9,6 +9,28 @@ This project implements a **minimal transcription API service** that accepts aud
 
 ---
 
+#### To run the Backend
+
+```bash
+# Clone the repository
+git clone https://github.com/bksen123/bharat-sen-voiceowl_assignment.git
+
+# Navigate to the backend directory
+cd bharat-sen-voiceowl_assignment/node-api
+
+# Install dependencies
+npm install
+
+# Run in development mode (with hot reload)
+npm run start:dev
+
+# Build the project (TypeScript compilation)
+npm run build
+
+# Run in production mode
+npm run start:prod
+
+
 **API Documentation:** http://localhost:4000/api-docs
 
 **Angular Client (built version):** http://localhost:4000
@@ -161,7 +183,7 @@ Other improvements:
 #### Backend:
 
 ```bash
-cd backend
+cd bharat-sen-voiceowl_assignment/node-api
 npm install
 npm run start:dev   # runs in development with hot reload
 npm run build       # TypeScript build
