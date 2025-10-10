@@ -53,6 +53,7 @@ voiceowl_assignment/
 | `/api/v1/transcription`       | POST   | Accepts audio URL and mocks transcription. Stores `{ audioUrl, transcription, createdAt, source }` in MongoDB. |
 | `/api/v1/transcription`       | GET    | Fetches transcriptions from the last 30 days with **pagination** (`page`, `limit` query parameters).           |
 | `/api/v1/transcription`       |   DELETE    | DELETE transcriptions behalf _id (`_id`, query parameters).           
+                         |
 
 | `/api/v1/transcription/azure` | POST   | Uses Azure Speech-to-Text (or mocks ) to transcribe audio and stores it in MongoDB.           |
 
